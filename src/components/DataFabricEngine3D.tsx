@@ -29,7 +29,7 @@ const ProcessingNode = ({ position, stage, index }: { position: THREE.Vector3; s
         onPointerOver={() => setHovered(true)}
         onPointerOut={() => setHovered(false)}
       >
-        <sphereGeometry args={[0.2, 32, 32]} />
+        <sphereGeometry args={[0.2, 12, 12]} />
         <meshStandardMaterial 
           color={stage.color} 
           emissive={stage.color} 
@@ -62,22 +62,21 @@ const ProcessingNode = ({ position, stage, index }: { position: THREE.Vector3; s
 };
 
 const DataStream = ({ start, end, color, chaos = 1, index, type = 'pipeline' }: { start: THREE.Vector3; end: THREE.Vector3; color: string; chaos?: number; index: number; type?: 'pipeline' | 'inbound' }) => {
-  const particleCount = type === 'pipeline' ? 25 : 15;
+  const particleCount = type === 'pipeline' ? 18 : 10;
   const positions = useMemo(() => new Float32Array(particleCount * 3), [particleCount]);
 
   useFrame((state) => {
     const time = state.clock.getElapsedTime();
     for (let i = 0; i < particleCount; i++) {
-        const t = ((time * (type === 'pipeline' ? 0.8 : 1.2) + i * 0.4 + index * 0.3) % 2) / 2;
+        const t = ((time * (type === 'pipeline' ? 0.6 : 0.9) + i * 0.4 + index * 0.3) % 2) / 2;
         const currentPos = new THREE.Vector3().lerpVectors(start, end, t);
         
-        // Data evolution logic: particles become more structured (less noise) as chaos decreases
-        const noise = chaos * (1 - t) * 0.8;
-        const patternFactor = (1 - chaos) * 0.2; // Aligned pattern
+        const noise = chaos * (1 - t) * 0.6;
+        const patternFactor = (1 - chaos) * 0.15;
         
-        positions[i * 3] = currentPos.x + Math.sin(time * 8 + i) * noise + (patternFactor ? Math.sin(i * 10) * patternFactor : 0);
-        positions[i * 3 + 1] = currentPos.y + Math.cos(time * 8 + i) * noise + (patternFactor ? Math.cos(i * 10) * patternFactor : 0);
-        positions[i * 3 + 2] = currentPos.z + Math.sin(time * 3 + i) * noise * 0.2;
+        positions[i * 3] = currentPos.x + Math.sin(time * 6 + i) * noise + (patternFactor ? Math.sin(i * 12) * patternFactor : 0);
+        positions[i * 3 + 1] = currentPos.y + Math.cos(time * 6 + i) * noise + (patternFactor ? Math.cos(i * 12) * patternFactor : 0);
+        positions[i * 3 + 2] = currentPos.z + Math.sin(time * 2 + i) * noise * 0.1;
     }
   });
 
@@ -126,16 +125,16 @@ const FabricCore = ({ scrollYProgress, mousePos }: { scrollYProgress: any; mouse
   return (
     <group ref={groupRef}>
       {/* Background Ambient Particles */}
-      <Points count={800}>
+      <Points count={400}>
         <bufferGeometry>
           <bufferAttribute
             attach="attributes-position"
-            array={new Float32Array(2400).map(() => (Math.random() - 0.5) * 50)}
-            count={800}
+            array={new Float32Array(1200).map(() => (Math.random() - 0.5) * 60)}
+            count={400}
             itemSize={3}
           />
         </bufferGeometry>
-        <PointMaterial transparent color="#ffffff" size={0.015} opacity={0.08} blending={THREE.AdditiveBlending} />
+        <PointMaterial transparent color="#ffffff" size={0.012} opacity={0.06} blending={THREE.AdditiveBlending} />
       </Points>
 
       {/* Inbound Streams */}
@@ -199,7 +198,7 @@ const TransactionPulse = ({ scale = 1, color = "#10b981" }) => {
   });
   return (
     <mesh ref={meshRef}>
-      <sphereGeometry args={[1, 16, 16]} />
+      <sphereGeometry args={[1, 8, 8]} />
       <meshBasicMaterial color={color} transparent opacity={0.2} wireframe blending={THREE.AdditiveBlending} />
     </mesh>
   );
@@ -208,7 +207,10 @@ const TransactionPulse = ({ scale = 1, color = "#10b981" }) => {
 export const DataFabricEngine3D = ({ scrollYProgress, mousePos }: { scrollYProgress: any; mousePos: { x: number; y: number } }) => {
   return (
     <div className="w-full h-full">
-      <Canvas camera={{ position: [0, 0, 10], fov: 45 }}>
+      <Canvas 
+        camera={{ position: [0, 0, 10], fov: 45 }}
+        gl={{ antialias: false, powerPreference: 'high-performance' }}
+      >
         <pointLight position={[5, 5, 5]} intensity={1} color="#6366f1" />
         <pointLight position={[-5, -5, -5]} intensity={0.5} color="#10b981" />
         <ambientLight intensity={0.2} />

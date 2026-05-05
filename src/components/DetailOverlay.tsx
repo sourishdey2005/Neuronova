@@ -53,7 +53,8 @@ export const DetailOverlay = ({
                   <img 
                     src="https://res.cloudinary.com/dodhvvewu/image/upload/v1777982271/123b0cdb-1074-4cfd-9954-0f6fed36f089_zmu6h1.png" 
                     alt="NeuroNova Logo" 
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-contain p-1.5"
+                    referrerPolicy="no-referrer"
                   />
                 </div>
                 <div>

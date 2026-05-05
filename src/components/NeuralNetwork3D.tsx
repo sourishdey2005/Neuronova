@@ -128,7 +128,7 @@ const PulseNode = ({ index }: { index: number }) => {
 
   return (
     <mesh ref={meshRef} position={position}>
-      <sphereGeometry args={[0.08, 12, 12]} />
+      <sphereGeometry args={[0.08, 8, 8]} />
       <meshBasicMaterial color="#22d3ee" transparent opacity={0.3} blending={THREE.AdditiveBlending} />
     </mesh>
   );
@@ -139,7 +139,7 @@ export const NeuralNetwork3D = ({ mousePos, scrollY }: { mousePos: { x: number; 
     <div className="absolute inset-0 -z-10 bg-black">
       <Canvas
         camera={{ position: [0, 0, 12], fov: 45 }}
-        gl={{ antialias: true, alpha: true }}
+        gl={{ antialias: false, alpha: true, powerPreference: 'high-performance' }}
       >
         <ambientLight intensity={0.4} />
         <ParticleNetwork mousePos={mousePos} scrollY={scrollY} />

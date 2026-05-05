@@ -234,7 +234,7 @@ const HeroScene = () => {
         <motion.div style={{ rotateX: mousePos.y * -20, rotateY: mousePos.x * 20, scale: scaleHero }} className="w-[800px] h-[800px] rounded-full relative preserve-3d flex items-center justify-center">
           <div className="absolute inset-0 bg-cyan-500/5 blur-[140px] animate-pulse" />
           <div className="relative z-20">
-            <Cpu size={140} className="text-cyan-400/20 drop-shadow-[0_0_30px_rgba(34,211,238,0.4)]" />
+            <div className="w-32 h-32 rounded-full bg-cyan-400/5 blur-2xl animate-pulse" />
           </div>
           
           <motion.div animate={{ rotate: 360 }} transition={{ duration: 40, repeat: Infinity, ease: "linear" }} className="absolute inset-0 rounded-full border border-white/5" />
@@ -430,18 +430,12 @@ const Home = () => {
         
         {/* Cognitive Core Visualization */}
         <section className="py-24 px-6 relative overflow-hidden">
-          <div className="max-w-7xl mx-auto">
-            <div className="flex flex-col lg:flex-row items-center gap-24">
-               <div className="flex-1 order-2 lg:order-1">
-                  <div className="text-[10px] font-mono text-cyan-400 mb-6 uppercase tracking-[0.4em]">NEURAL_CORE_V4</div>
-                  <h2 className="text-5xl md:text-8xl font-display uppercase font-bold tracking-tighter mb-8 leading-[0.85]">THE <span className="text-white/20">SILENT</span> <br/>BRAIN</h2>
-                  <p className="text-gray-400 text-xl font-sans leading-relaxed mb-12 max-w-lg">Witness the convergence of organic intuition and silicon precision. Our core architecture processes 4.8 quadrillion synaptic events per millisecond.</p>
-                  <div className="flex flex-wrap gap-4"><button className="button-primary py-4 px-8 text-xs">INITIALIZE_LINK</button></div>
-               </div>
-               <div className="flex-1 order-1 lg:order-2 relative aspect-square glass-card tech-border p-12 flex items-center justify-center">
-                  <div className="w-64 h-64 border border-cyan-400/20 rounded-full animate-spin-slow absolute" />
-                  <motion.div animate={{ scale: [1, 1.1, 1] }} transition={{ duration: 4, repeat: Infinity }} className="w-32 h-32 bg-cyan-400/10 rounded-full flex items-center justify-center border border-cyan-400/40 relative"><Cpu size={48} className="text-cyan-400" /></motion.div>
-               </div>
+          <div className="max-w-7xl mx-auto text-center">
+            <div className="max-w-3xl mx-auto">
+               <div className="text-[10px] font-mono text-cyan-400 mb-6 uppercase tracking-[0.4em]">NEURAL_CORE_V4</div>
+               <h2 className="text-5xl md:text-8xl font-display uppercase font-bold tracking-tighter mb-8 leading-[0.85]">THE <span className="text-white/20">SILENT</span> <br/>BRAIN</h2>
+               <p className="text-gray-400 text-xl font-sans leading-relaxed mb-12 max-w-lg mx-auto">Witness the convergence of organic intuition and silicon precision. Our core architecture processes 4.8 quadrillion synaptic events per millisecond.</p>
+               <div className="flex flex-wrap gap-4 justify-center"><button className="button-primary py-4 px-8 text-xs">INITIALIZE_LINK</button></div>
             </div>
           </div>
         </section>
@@ -452,21 +446,27 @@ const Home = () => {
         <NeuralIntelligenceSection />
         <DataScienceIntelligenceSection />
 
-        <section className="relative py-32 px-6"><div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-24 items-center"><div><div className="text-[10px] font-mono text-cyan-400 mb-6 uppercase tracking-[0.4em]">SYSTEM TOPOLOGY</div><h2 className="text-5xl md:text-7xl font-display uppercase font-bold tracking-tighter mb-8 leading-tight">GLOBAL <br/><span className="text-white/20">INFRASTRUCTURE</span></h2><p className="text-gray-400 text-lg mb-12 max-w-xl">NeuroNova operates across a decentralized mesh of 12,000+ nodes, ensuring sub-10ms latency for global neural synchronization.</p>
-            <div className="flex items-center gap-6 mt-8">
+        <section className="relative py-32 px-6 text-center">
+          <div className="max-w-3xl mx-auto">
+            <div className="text-[10px] font-mono text-cyan-400 mb-6 uppercase tracking-[0.4em]">SYSTEM TOPOLOGY</div>
+            <h2 className="text-5xl md:text-7xl font-display uppercase font-bold tracking-tighter mb-8 leading-tight">GLOBAL <br/><span className="text-white/20">INFRASTRUCTURE</span></h2>
+            <p className="text-gray-400 text-lg mb-12 mx-auto">NeuroNova operates across a decentralized mesh of 12,000+ nodes, ensuring sub-10ms latency for global neural synchronization.</p>
+            <div className="flex items-center justify-center gap-6 mt-8">
               <div className="w-24 h-24 tech-border glass-card p-4 flex items-center justify-center">
                 <img 
                   src="https://res.cloudinary.com/dodhvvewu/image/upload/v1777982271/123b0cdb-1074-4cfd-9954-0f6fed36f089_zmu6h1.png" 
                   alt="NeuroNova Logo" 
                   className="w-full h-full object-contain opacity-90 brightness-110"
+                  referrerPolicy="no-referrer"
                 />
               </div>
               <div className="h-12 w-[1px] bg-white/10" />
-              <div className="text-[10px] font-mono text-gray-500 uppercase tracking-widest leading-relaxed">
+              <div className="text-[10px] font-mono text-gray-500 uppercase tracking-widest leading-relaxed text-left">
                 OFFICIAL<br />LABORATORY<br />CERTIFIED
               </div>
             </div>
-          </div><div className="relative aspect-square tech-border glass-card flex items-center justify-center overflow-hidden"><div className="absolute inset-0 opacity-10 tech-grid" /><div className="w-32 h-32 tech-border flex items-center justify-center p-4 bg-cyan-400/5 text-cyan-400 font-mono text-[8px] text-center uppercase tracking-widest">NODE_ALPHA<br/>STATUS: OK</div></div></div></section>
+          </div>
+        </section>
         
         <section className="px-6 py-48 bg-white/[0.01] relative overflow-hidden"><div className="absolute inset-0 tech-grid opacity-10" /><motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} className="max-w-5xl mx-auto text-center relative z-10"><h2 className="text-4xl md:text-6xl font-display mb-12 uppercase tracking-tighter italic font-bold">"The stars of the next century will be built from neurons, not fusion."</h2><div className="w-16 h-1 bg-cyan-400 mx-auto mb-8" /><p className="text-gray-500 font-mono text-[10px] uppercase tracking-[0.4em]">NEURONOVA LABORATORY MANIFESTO // V4.2.1</p></motion.div></section>
       </div>
@@ -499,7 +499,17 @@ const Navbar = () => {
   return (
     <nav className="fixed top-0 left-0 w-full z-50 border-b border-white/10 bg-[#050505]/80 backdrop-blur-lg">
       <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-        <Link to="/" className="flex items-center gap-3 group"><div className="w-10 h-10 tech-border glass-card flex items-center justify-center group-hover:border-cyan-400 transition-colors overflow-hidden"><img src="https://res.cloudinary.com/dodhvvewu/image/upload/v1777982271/123b0cdb-1074-4cfd-9954-0f6fed36f089_zmu6h1.png" alt="Logo" className="w-full h-full object-cover"/></div><span className="font-display font-bold text-xl uppercase italic">NeuroNova Lab</span></Link>
+        <Link to="/" className="flex items-center gap-3 group">
+          <div className="w-10 h-10 tech-border glass-card flex items-center justify-center group-hover:border-cyan-400 transition-colors overflow-hidden">
+            <img 
+              src="https://res.cloudinary.com/dodhvvewu/image/upload/v1777982271/123b0cdb-1074-4cfd-9954-0f6fed36f089_zmu6h1.png" 
+              alt="Logo" 
+              className="w-full h-full object-contain opacity-80 group-hover:opacity-100 transition-opacity p-1.5"
+              referrerPolicy="no-referrer"
+            />
+          </div>
+          <span className="font-display font-bold text-xl uppercase italic">NeuroNova Lab</span>
+        </Link>
         <div className="hidden md:flex items-center gap-8">{navLinks.map((link) => (<Link key={link.path} to={link.path} className={`text-sm font-mono tracking-wider transition-colors hover:text-white ${location.pathname === link.path ? 'text-white' : 'text-gray-500'}`}>{link.name.toUpperCase()}</Link>))}<Link to="/contact" className="button-primary py-1.5 px-4 text-xs font-mono">COLLABORATE</Link></div>
         <button className="md:hidden text-white" onClick={() => setIsOpen(!isOpen)}>{isOpen ? <X size={24} /> : <Menu size={24} />}</button>
       </div>
@@ -508,23 +518,64 @@ const Navbar = () => {
   );
 };
 
+const MainContent = () => {
+  const location = useLocation();
+  return (
+    <main className="pt-20">
+      <AnimatePresence mode="wait">
+        <Routes location={location} key={location.pathname}>
+          <Route path="/" element={
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.5 }}>
+              <Home />
+            </motion.div>
+          } />
+          <Route path="/about" element={
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.4 }}>
+              <About />
+            </motion.div>
+          } />
+          <Route path="/projects" element={
+            <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} transition={{ duration: 0.4 }}>
+              <ProjectsPage />
+            </motion.div>
+          } />
+          <Route path="/research" element={
+            <motion.div initial={{ opacity: 0, scale: 0.98 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 1.02 }} transition={{ duration: 0.4 }}>
+              <ResearchPage />
+            </motion.div>
+          } />
+          <Route path="/team" element={
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.4 }}>
+              <TeamPage />
+            </motion.div>
+          } />
+          <Route path="/blog" element={
+            <motion.div initial={{ opacity: 0, filter: 'blur(10px)' }} animate={{ opacity: 1, filter: 'blur(0px)' }} exit={{ opacity: 0, filter: 'blur(10px)' }} transition={{ duration: 0.5 }}>
+              <BlogPage />
+            </motion.div>
+          } />
+          <Route path="/careers" element={
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.4 }}>
+              <CareersPage />
+            </motion.div>
+          } />
+          <Route path="/contact" element={
+            <motion.div initial={{ opacity: 0, scale: 1.1 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.9 }} transition={{ duration: 0.4 }}>
+              <ContactPage />
+            </motion.div>
+          } />
+        </Routes>
+      </AnimatePresence>
+    </main>
+  );
+};
+
 export default function App() {
   return (
     <Router>
       <div className="min-h-screen bg-[#050505] text-white">
         <Navbar />
-        <main className="pt-20">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/projects" element={<ProjectsPage />} />
-            <Route path="/research" element={<ResearchPage />} />
-            <Route path="/team" element={<TeamPage />} />
-            <Route path="/blog" element={<BlogPage />} />
-            <Route path="/careers" element={<CareersPage />} />
-            <Route path="/contact" element={<ContactPage />} />
-          </Routes>
-        </main>
+        <MainContent />
         <footer className="border-t border-white/10 py-12 px-6 mt-32">
           <div className="max-w-7xl mx-auto grid md:grid-cols-4 gap-12 text-sm">
             <div className="col-span-2"><div className="flex items-center gap-3 mb-6 font-display font-bold text-lg uppercase italic">NeuroNova Lab</div><p className="text-gray-500 max-w-sm mb-6">Redefining the cognitive landscape through neural architecture and ethical research.</p></div>
