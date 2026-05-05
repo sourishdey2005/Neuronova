@@ -36,7 +36,7 @@ export const ContactPage = () => {
               </div>
               <div>
                 <h4 className="text-sm font-mono text-gray-500 uppercase tracking-widest mb-1">Geospatial Origin</h4>
-                <p className="text-xl font-display text-white">SILICON VALLEY, CA</p>
+                <p className="text-xl font-display text-white">BANGALORE, INDIA</p>
               </div>
             </div>
 

@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence, useScroll, useTransform } from 'motion/react';
-import { Menu, X, Cpu, Beaker, FolderCode, Zap, Mail, BookOpen, Users, ArrowRight, TrendingUp } from 'lucide-react';
+import { Menu, X, Cpu, Beaker, FolderCode, Zap, Mail, BookOpen, Users, ArrowRight, TrendingUp, Briefcase } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 
 // Page Imports
@@ -9,6 +9,7 @@ import { ResearchPage } from './pages/ResearchPage';
 import { TeamPage } from './pages/TeamPage';
 import { BlogPage } from './pages/BlogPage';
 import { ContactPage } from './pages/ContactPage';
+import { CareersPage } from './pages/CareersPage';
 
 import { NeuralNetwork3D } from './components/NeuralNetwork3D';
 import { CryptoGlobeCanvas } from './components/CryptoGlobe3D';
@@ -272,10 +273,10 @@ const MarketIntelligenceSection = () => {
   }, []);
 
   const tokens = [
-    { name: 'BTC', price: '$64,281', change: '+2.4%', color: 'text-orange-400' },
-    { name: 'ETH', price: '$3,412', change: '+1.8%', color: 'text-purple-400' },
-    { name: 'SOL', price: '$142.5', change: '+5.2%', color: 'text-cyan-400' },
-    { name: 'NOVA', price: '$1.08', change: '+12.4%', color: 'text-emerald-400' },
+    { name: 'BTC', price: '₹54,28,100', change: '+2.4%', color: 'text-orange-400' },
+    { name: 'ETH', price: '₹2,84,200', change: '+1.8%', color: 'text-purple-400' },
+    { name: 'SOL', price: '₹11,840', change: '+5.2%', color: 'text-cyan-400' },
+    { name: 'NOVA', price: '₹92.40', change: '+12.4%', color: 'text-emerald-400' },
   ];
 
   return (
@@ -486,7 +487,14 @@ const About = () => (
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
-  const navLinks = [ { name: 'About', path: '/about', icon: <Users size={18} /> }, { name: 'Research', path: '/research', icon: <BookOpen size={18} /> }, { name: 'Projects', path: '/projects', icon: <FolderCode size={18} /> }, { name: 'Team', path: '/team', icon: <Users size={18} /> }, { name: 'Blog', path: '/blog', icon: <Zap size={18} /> } ];
+  const navLinks = [ 
+    { name: 'About', path: '/about', icon: <Users size={18} /> }, 
+    { name: 'Research', path: '/research', icon: <BookOpen size={18} /> }, 
+    { name: 'Projects', path: '/projects', icon: <FolderCode size={18} /> }, 
+    { name: 'Team', path: '/team', icon: <Users size={18} /> }, 
+    { name: 'Blog', path: '/blog', icon: <Zap size={18} /> },
+    { name: 'Careers', path: '/careers', icon: <Briefcase size={18} /> }
+  ];
 
   return (
     <nav className="fixed top-0 left-0 w-full z-50 border-b border-white/10 bg-[#050505]/80 backdrop-blur-lg">
@@ -513,14 +521,15 @@ export default function App() {
             <Route path="/research" element={<ResearchPage />} />
             <Route path="/team" element={<TeamPage />} />
             <Route path="/blog" element={<BlogPage />} />
+            <Route path="/careers" element={<CareersPage />} />
             <Route path="/contact" element={<ContactPage />} />
           </Routes>
         </main>
         <footer className="border-t border-white/10 py-12 px-6 mt-32">
           <div className="max-w-7xl mx-auto grid md:grid-cols-4 gap-12 text-sm">
             <div className="col-span-2"><div className="flex items-center gap-3 mb-6 font-display font-bold text-lg uppercase italic">NeuroNova Lab</div><p className="text-gray-500 max-w-sm mb-6">Redefining the cognitive landscape through neural architecture and ethical research.</p></div>
-            <div><h4 className="text-white font-display mb-4 uppercase tracking-widest text-xs">Navigation</h4><ul className="space-y-2 text-gray-500 font-mono"><li><Link to="/about" className="hover:text-white">ABOUT</Link></li><li><Link to="/projects" className="hover:text-white">PROJECTS</Link></li><li><Link to="/research" className="hover:text-white">RESEARCH</Link></li></ul></div>
-            <div><h4 className="text-white font-display mb-4 uppercase tracking-widest text-xs">Contact</h4><p className="text-gray-500 font-mono">LAB@NEURONOVA.TECH</p><p className="text-gray-500 font-mono mt-2">SILICON VALLEY, CA</p></div>
+            <div><h4 className="text-white font-display mb-4 uppercase tracking-widest text-xs">Navigation</h4><ul className="space-y-2 text-gray-500 font-mono"><li><Link to="/about" className="hover:text-white">ABOUT</Link></li><li><Link to="/projects" className="hover:text-white">PROJECTS</Link></li><li><Link to="/research" className="hover:text-white">RESEARCH</Link></li><li><Link to="/careers" className="hover:text-white">CAREERS</Link></li></ul></div>
+            <div><h4 className="text-white font-display mb-4 uppercase tracking-widest text-xs">Contact</h4><p className="text-gray-500 font-mono">LAB@NEURONOVA.TECH</p><p className="text-gray-500 font-mono mt-2">BANGALORE, INDIA</p></div>
           </div>
         </footer>
       </div>
