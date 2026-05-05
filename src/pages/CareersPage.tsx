@@ -45,24 +45,22 @@ const JOBS = [
   }
 ];
 
-const ApplicationModal = ({ isOpen, onClose, jobTitle }: { isOpen: boolean; onClose: () => void; jobTitle: string }) => {
+const ApplicationModal = ({ onClose, jobTitle }: { onClose: () => void; jobTitle: string }) => {
   const [submitted, setSubmitted] = useState(false);
 
-  if (!isOpen) return null;
-
   return (
-    <AnimatePresence>
+    <motion.div 
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/90 backdrop-blur-md"
+    >
       <motion.div 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/90 backdrop-blur-md"
+        initial={{ scale: 0.95, opacity: 0, y: 20 }}
+        animate={{ scale: 1, opacity: 1, y: 0 }}
+        exit={{ scale: 0.95, opacity: 0, y: 20 }}
+        className="relative w-full max-w-xl glass-card tech-border p-8 overflow-hidden"
       >
-        <motion.div 
-          initial={{ scale: 0.95, opacity: 0, y: 20 }}
-          animate={{ scale: 1, opacity: 1, y: 0 }}
-          className="relative w-full max-w-xl glass-card tech-border p-8 overflow-hidden"
-        >
           <div className="absolute inset-0 bg-cyan-400/[0.02] pointer-events-none" />
           
           <button onClick={onClose} className="absolute top-4 right-4 text-gray-500 hover:text-white transition-colors">
@@ -133,7 +131,6 @@ const ApplicationModal = ({ isOpen, onClose, jobTitle }: { isOpen: boolean; onCl
           )}
         </motion.div>
       </motion.div>
-    </AnimatePresence>
   );
 };
 
@@ -194,11 +191,14 @@ export const CareersPage = () => {
           ))}
         </section>
 
-        <ApplicationModal 
-          isOpen={!!selectedJob} 
-          onClose={() => setSelectedJob(null)} 
-          jobTitle={selectedJob || ''} 
-        />
+        <AnimatePresence>
+          {selectedJob && (
+            <ApplicationModal 
+              onClose={() => setSelectedJob(null)} 
+              jobTitle={selectedJob} 
+            />
+          )}
+        </AnimatePresence>
 
         <section className="mt-32 pt-32 border-t border-white/5">
            <div className="grid md:grid-cols-3 gap-12">
