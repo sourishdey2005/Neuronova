@@ -1,7 +1,12 @@
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence, useScroll, useTransform } from 'motion/react';
-import { Menu, X, Cpu, Beaker, FolderCode, Zap, Mail, BookOpen, Users, ArrowRight, TrendingUp, Briefcase } from 'lucide-react';
+import { Menu, X, Zap, ArrowRight, TrendingUp, Briefcase, BookOpen, Users, FolderCode } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
+
+import { NeuralNetwork3D } from './components/NeuralNetwork3D';
+import { CryptoGlobeCanvas } from './components/CryptoGlobe3D';
+import { NeuralGlobe3D } from './components/NeuralGlobe3D';
+import { DataFabricEngine3D } from './components/DataFabricEngine3D';
 
 // Page Imports
 import { ProjectsPage } from './pages/ProjectsPage';
@@ -11,11 +16,6 @@ import { BlogPage } from './pages/BlogPage';
 import { ContactPage } from './pages/ContactPage';
 import { CareersPage } from './pages/CareersPage';
 import AboutPage from './pages/AboutPage';
-
-import { NeuralNetwork3D } from './components/NeuralNetwork3D';
-import { CryptoGlobeCanvas } from './components/CryptoGlobe3D';
-import { NeuralGlobe3D } from './components/NeuralGlobe3D';
-import { DataFabricEngine3D } from './components/DataFabricEngine3D';
 
 const DataScienceIntelligenceSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -34,74 +34,55 @@ const DataScienceIntelligenceSection = () => {
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
-
+  
   return (
-    <section ref={sectionRef} className="relative h-[150vh] overflow-hidden bg-black/20">
-      <div className="sticky top-0 h-screen flex items-center justify-center">
+    <section ref={sectionRef} className="relative h-[200vh] bg-black/20">
+      <div className="sticky top-0 h-screen flex items-center justify-center overflow-hidden">
         {/* Background Canvas */}
         <div className="absolute inset-0 z-0">
           <DataFabricEngine3D scrollYProgress={scrollYProgress} mousePos={mousePos} />
         </div>
 
-        {/* Technical Overlays */}
-        <div className="absolute inset-0 pointer-events-none z-10 px-10">
-          <div className="absolute top-1/4 left-10">
-             <div className="text-[10px] font-mono text-emerald-400 mb-2 tracking-[0.3em]">DATA_LIFECYCLE</div>
-             <div className="w-48 h-[1px] bg-emerald-400/20" />
-             <div className="mt-4 space-y-2">
-                {['INGEST', 'TRANSFORM', 'VECTORIZE', 'SYNTHESIZE'].map((s, i) => (
-                  <div key={i} className="flex items-center gap-2">
-                    <div className="w-1 h-1 bg-emerald-400/40 rounded-full" />
-                    <div className="text-[8px] font-mono text-gray-500">{s}</div>
-                  </div>
-                ))}
+        <div className="absolute inset-0 tech-grid opacity-5 pointer-events-none" />
+        
+        {/* Content Overlays */}
+        <div className="max-w-7xl mx-auto w-full px-6 flex flex-col md:flex-row items-center justify-between gap-12 relative z-10 transition-all">
+          <motion.div 
+            style={{ 
+              opacity: useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]),
+              y: useTransform(scrollYProgress, [0, 1], [30, -30])
+            }}
+            className="max-w-xl"
+          >
+             <div className="text-[10px] font-mono text-emerald-400 mb-6 tracking-[0.4em] flex items-center gap-3">
+               <span className="w-12 h-[1px] bg-emerald-400/30"></span> DATA_SCIENCE_CORE
              </div>
-          </div>
+             <h2 className="text-5xl md:text-7xl font-display uppercase font-bold tracking-tighter leading-none mb-8">
+               DATA <span className="text-white/20">FABRIC</span> ENGINE
+             </h2>
+             <p className="text-gray-400 font-sans leading-relaxed text-lg">
+               Our neural synthesizing pipeline processes multi-modal data streams at 12.4 PB/S, maintaining absolute structural integrity.
+             </p>
+          </motion.div>
           
-          <div className="absolute bottom-1/4 right-10 text-right">
-             <div className="text-[10px] font-mono text-purple-400 mb-2 tracking-[0.3em]">PROCESSING_LOAD</div>
-             <div className="w-48 h-[1px] bg-purple-400/20 ml-auto" />
-             <div className="mt-4 flex flex-col items-end gap-1">
-                {[...Array(4)].map((_, i) => (
-                   <div key={i} className="flex gap-1">
-                      {[...Array(8)].map((_, j) => (
-                        <motion.div 
-                          key={j} 
-                          animate={{ opacity: [0.1, 0.5, 0.1] }} 
-                          transition={{ duration: 1, delay: (i + j) * 0.1, repeat: Infinity }}
-                          className="w-2 h-2 bg-purple-400/20" 
-                        />
-                      ))}
-                   </div>
-                ))}
-             </div>
-          </div>
-        </div>
-
-        <div className="relative z-20 text-center max-w-4xl px-6 pointer-events-none">
-           <motion.div 
+          <motion.div 
              style={{ 
-               opacity: useTransform(scrollYProgress, [0, 0.1, 0.9, 1], [0, 1, 1, 0]),
-               y: useTransform(scrollYProgress, [0, 1], [20, -20])
+               opacity: useTransform(scrollYProgress, [0.1, 0.3, 0.9, 1], [0, 1, 1, 0])
              }}
-             className="space-y-6"
-           >
-              <h2 className="text-6xl md:text-8xl font-display uppercase font-bold tracking-tighter leading-none">
-                DATA <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">FABRIC</span> ENGINE
-              </h2>
-              <p className="text-gray-400 font-mono text-xs uppercase tracking-[0.5em]">Real-time Intelligence Synthesis Pipeline</p>
-              
-              <div className="flex justify-center gap-12 mt-12">
-                 <div className="text-center group">
-                    <div className="text-[8px] font-mono text-emerald-400/50 mb-1">LATENCY</div>
-                    <div className="text-xl font-mono text-white tracking-widest">0.02ms</div>
-                 </div>
-                 <div className="text-center group border-l border-white/5 pl-12">
-                    <div className="text-[8px] font-mono text-purple-400/50 mb-1">THROUGHPUT</div>
-                    <div className="text-xl font-mono text-white tracking-widest">12.4 PB/S</div>
-                 </div>
-              </div>
-           </motion.div>
+             className="grid grid-cols-2 gap-4 w-full md:w-auto"
+          >
+             {[
+               { label: 'INGESTION', stats: '0.02ms' },
+               { label: 'VECTORIZE', stats: '99.9%' },
+               { label: 'SYNTHESIS', stats: 'ACTIVE' },
+               { label: 'ENCRYPTION', stats: 'SHADOW' }
+             ].map((item, i) => (
+               <div key={i} className="p-6 tech-border glass-card bg-emerald-400/5 flex flex-col gap-2 backdrop-blur-md">
+                 <span className="text-[8px] font-mono text-emerald-400/60 uppercase tracking-widest">{item.label}</span>
+                 <span className="text-lg font-display font-bold text-white">{item.stats}</span>
+               </div>
+             ))}
+          </motion.div>
         </div>
       </div>
     </section>
@@ -127,7 +108,7 @@ const NeuralIntelligenceSection = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative h-[150vh] overflow-hidden">
+    <section ref={sectionRef} className="relative h-[150vh] overflow-hidden bg-[#050505]">
       <div className="sticky top-0 h-screen flex items-center justify-center">
         {/* Background Neural Mist / Space */}
         <motion.div 
@@ -137,60 +118,30 @@ const NeuralIntelligenceSection = () => {
           <NeuralGlobe3D scrollYProgress={scrollYProgress} mousePos={mousePos} />
         </motion.div>
 
-        {/* Technical Overlays */}
-        <div className="absolute inset-0 pointer-events-none z-10">
-          <div className="absolute top-20 left-10 text-[10px] font-mono text-cyan-400 group">
-             <div className="flex items-center gap-3 mb-2">
-               <span className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse" />
-               SERVER_LOAD: OPTIMAL [0.04s]
-             </div>
-             <motion.div initial={{ width: 0 }} whileInView={{ width: 120 }} className="h-[1px] bg-cyan-400/30" />
-          </div>
-          <div className="absolute bottom-20 right-10 text-right text-[10px] font-mono text-purple-400">
-             <div className="mb-2">MODEL_SYNC_RATE: 99.98%</div>
-             <div className="flex justify-end gap-1">
-               {[...Array(5)].map((_, i) => (
-                 <motion.div key={i} animate={{ opacity: [0.2, 1, 0.2] }} transition={{ duration: 1, delay: i * 0.2, repeat: Infinity }} className="w-1 h-3 bg-purple-400/40" />
-               ))}
-             </div>
-          </div>
-        </div>
-
-        <div className="relative z-20 text-center max-w-4xl px-6">
-           <motion.div 
-             style={{ 
-               opacity: useTransform(scrollYProgress, [0, 0.1, 0.9, 1], [0, 1, 1, 0]),
-               scale: useTransform(scrollYProgress, [0, 0.1, 0.9, 1], [0.95, 1, 1, 0.95])
-             }}
-             className="space-y-6"
-           >
-              <h2 className="text-6xl md:text-8xl font-display uppercase font-bold tracking-tighter leading-none">
-                NEURAL <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-500">PLANETARY</span> NETWORK
-              </h2>
-              <p className="text-gray-400 font-mono text-xs uppercase tracking-[0.5em]">Global Decentralized Intelligence Core</p>
-              
-              <div className="h-24 relative overflow-hidden flex items-center justify-center">
-                 {[
-                   "DISTRIBUTED_MODEL_INFERENCE_ONLINE",
-                   "REAL_TIME_GRADIENT_UPDATE_SYNC",
-                   "MULTIMODAL_LATENT_SPACE_EXPANSION"
-                 ].map((text, i) => {
-                   const start = i * 0.33; const end = (i + 1) * 0.33;
-                   return (
-                     <motion.div 
-                       key={i}
-                       style={{ 
-                         opacity: useTransform(scrollYProgress, [start, start + 0.1, end - 0.1, end], [0, 1, 1, 0]),
-                         y: useTransform(scrollYProgress, [start, end], [20, -20])
-                       }}
-                       className="absolute text-cyan-400/60 font-mono text-sm tracking-widest"
-                     >
-                       {text}
-                     </motion.div>
-                   );
-                 })}
+        <div className="max-w-7xl mx-auto flex flex-col items-center text-center relative z-10 px-6">
+          <motion.div 
+            style={{ 
+               opacity: useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]),
+               scale: useTransform(scrollYProgress, [0, 0.1, 0.9, 1], [0.98, 1, 1, 0.98])
+            }}
+          >
+            <div className="text-[10px] font-mono text-cyan-400 mb-6 uppercase tracking-[0.4em]">DECENTRALIZED_NODES</div>
+            <h2 className="text-5xl md:text-8xl font-display uppercase font-bold tracking-tighter leading-none mb-12">
+              NEURAL <span className="text-white/20">PLANETARY</span> NETWORK
+            </h2>
+          </motion.div>
+          <div className="grid md:grid-cols-3 gap-12 w-full mt-12 bg-black/40 backdrop-blur-sm p-8 tech-border">
+            {[
+              { title: "MODEL_INFERENCE", detail: "Global synchronized inference nodes with sub-10ms latency." },
+              { title: "GRADIENT_SYNC", detail: "Real-time weight updates across 12,000+ decentralized cores." },
+              { title: "LATENT_EXPANSION", detail: "Scaling high-dimensional datasets via mesh-topology logic." }
+            ].map((item, i) => (
+              <div key={i} className="text-left space-y-4 border-l border-white/10 pl-8">
+                <h3 className="text-xs font-display font-bold text-cyan-400 uppercase tracking-widest">{item.title}</h3>
+                <p className="text-gray-500 text-sm leading-relaxed font-sans">{item.detail}</p>
               </div>
-           </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
@@ -204,20 +155,14 @@ const HeroScene = () => {
     target: containerRef,
     offset: ["start start", "end start"]
   });
-  
-  const y1 = useTransform(scrollYProgress, [0, 1], [0, 200]);
-  const rotateHero = useTransform(scrollYProgress, [0, 1], [0, 20]);
-  const scaleHero = useTransform(scrollYProgress, [0, 1], [1, 1.1]);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       if (!containerRef.current) return;
       const rect = containerRef.current.getBoundingClientRect();
-      const width = rect.width || window.innerWidth;
-      const height = rect.height || window.innerHeight;
       setMousePos({
-        x: (e.clientX - rect.left) / width - 0.5,
-        y: (e.clientY - rect.top) / height - 0.5,
+        x: (e.clientX - rect.left) / rect.width - 0.5,
+        y: (e.clientY - rect.top) / rect.height - 0.5,
       });
     };
     window.addEventListener('mousemove', handleMouseMove);
@@ -225,32 +170,43 @@ const HeroScene = () => {
   }, []);
 
   return (
-    <section ref={containerRef} className="relative px-6 flex flex-col items-center justify-center min-h-screen text-center overflow-hidden">
+    <section ref={containerRef} className="relative px-6 flex flex-col items-center justify-center min-h-screen text-center overflow-hidden pt-20">
       {/* 3D WebGL Background */}
-      <NeuralNetwork3D mousePos={mousePos} scrollY={scrollYProgress} />
-
-      <motion.div style={{ y: y1, rotate: rotateHero, x: mousePos.x * 50 }} className="absolute inset-0 tech-grid -z-20 opacity-10 scale-[2] pointer-events-none" />
-
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full -z-10 flex items-center justify-center pointer-events-none">
-        <motion.div style={{ rotateX: mousePos.y * -20, rotateY: mousePos.x * 20, scale: scaleHero }} className="w-[800px] h-[800px] rounded-full relative preserve-3d flex items-center justify-center">
-          <div className="absolute inset-0 bg-cyan-500/5 blur-[140px] animate-pulse" />
-          <div className="relative z-20">
-            <div className="w-32 h-32 rounded-full bg-cyan-400/5 blur-2xl animate-pulse" />
-          </div>
-          
-          <motion.div animate={{ rotate: 360 }} transition={{ duration: 40, repeat: Infinity, ease: "linear" }} className="absolute inset-0 rounded-full border border-white/5" />
-          <motion.div animate={{ rotate: -360 }} transition={{ duration: 50, repeat: Infinity, ease: "linear" }} className="absolute inset-10 rounded-full border border-cyan-400/10" />
-        </motion.div>
+      <div className="absolute inset-0 z-0">
+        <NeuralNetwork3D mousePos={mousePos} scrollY={scrollYProgress} />
       </div>
+
+      <div className="absolute inset-0 tech-grid opacity-5 pointer-events-none" />
       
-      <motion.div initial={{ opacity: 1, scale: 1 }} style={{ x: mousePos.x * -20, y: mousePos.y * -20 }} className="max-w-4xl relative z-10">
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="inline-flex items-center gap-2 px-3 py-1 mb-8 text-xs font-mono text-cyan-400 border border-cyan-400/30 bg-cyan-400/5 rounded-full backdrop-blur-sm"><Zap size={12} className="animate-pulse" /><span>NEURAL CORE V4.0 // ONLINE</span></motion.div>
-        <h1 className="text-6xl md:text-9xl font-display font-bold mb-8 leading-[0.8] uppercase tracking-tighter"><span className="block">NEURO</span><span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-white to-purple-400">NOVA LAB</span></h1>
-        <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }} className="text-xl text-gray-300 mb-10 max-w-2xl mx-auto font-sans leading-relaxed">Architecting high-dimensional intelligence at the intersection of neural networks and biological data synthesis. No compromises.</motion.p>
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.7 }} className="flex flex-wrap items-center justify-center gap-6"><Link to="/projects" className="group button-primary py-4 px-8 flex items-center gap-3">EXPLORE NODES <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" /></Link><Link to="/contact" className="button-secondary py-4 px-8">INITIATE COLLAB</Link></motion.div>
+      <motion.div 
+        initial={{ opacity: 0, y: 30 }} 
+        animate={{ opacity: 1, y: 0 }} 
+        transition={{ duration: 1 }} 
+        className="max-w-4xl relative z-10"
+      >
+        <div className="inline-flex items-center gap-3 px-4 py-1.5 mb-10 text-[10px] font-mono text-cyan-400 border border-cyan-400/30 bg-cyan-400/5 rounded-full uppercase tracking-widest backdrop-blur-sm">
+          <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
+          NEURO_CORE_SYSTEMS: ACTIVE
+        </div>
+        <h1 className="text-6xl md:text-9xl font-display font-bold mb-10 leading-[0.85] uppercase tracking-tighter">
+          <span className="block">NEURO</span>
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-white to-purple-400">NOVA LAB</span>
+        </h1>
+        <p className="text-xl text-gray-400 mb-12 max-w-2xl mx-auto font-sans leading-relaxed font-light">
+          Architecting high-dimensional intelligence at the intersection of neural networks and biological data synthesis. Precision engineered.
+        </p>
+        <div className="flex flex-wrap items-center justify-center gap-6">
+          <Link to="/about" className="group button-primary py-4 px-10 flex items-center gap-3">
+            LEARN_THE_LAB <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+          </Link>
+          <Link to="/contact" className="button-secondary py-4 px-10">INITIATE_CONTACT</Link>
+        </div>
       </motion.div>
 
-      <motion.div animate={{ y: [0, 10, 0] }} transition={{ duration: 2, repeat: Infinity }} className="absolute bottom-10 left-1/2 -translate-x-1/2 text-gray-500 flex flex-col items-center gap-2"><span className="text-[10px] font-mono tracking-widest">SCROLL</span><div className="w-[1px] h-12 bg-gradient-to-b from-white/20 to-transparent" /></motion.div>
+      <motion.div animate={{ y: [0, 8, 0] }} transition={{ duration: 2, repeat: Infinity }} className="absolute bottom-12 left-1/2 -translate-x-1/2 text-gray-700 flex flex-col items-center gap-3 pointer-events-none">
+        <span className="text-[10px] font-mono tracking-[0.4em] uppercase">SYSTEM_DESCENT</span>
+        <div className="w-[1px] h-12 bg-gradient-to-b from-white/10 to-transparent" />
+      </motion.div>
     </section>
   );
 };
@@ -274,155 +230,57 @@ const MarketIntelligenceSection = () => {
   }, []);
 
   const tokens = [
-    { name: 'BTC', price: '₹54,28,100', change: '+2.4%', color: 'text-orange-400', cap: '₹102T', vol: '₹2.8T' },
-    { name: 'ETH', price: '₹2,84,200', change: '+1.8%', color: 'text-purple-400', cap: '₹34T', vol: '₹1.2T' },
-    { name: 'SOL', price: '₹11,840', change: '+5.2%', color: 'text-cyan-400', cap: '₹5.2T', vol: '₹0.6T' },
-    { name: 'NOVA', price: '₹92.40', change: '+12.4%', color: 'text-emerald-400', cap: '₹850B', vol: '₹120M' },
+    { name: 'BTC', price: '₹54,28,100', change: '+2.4%' },
+    { name: 'ETH', price: '₹2,84,200', change: '+1.8%' },
+    { name: 'SOL', price: '₹11,840', change: '+5.2%' },
+    { name: 'NOVA', price: '₹92.40', change: '+12.4%' },
   ];
 
   return (
-    <section ref={sectionRef} className="relative h-[150vh]">
+    <section ref={sectionRef} className="relative h-[150vh] border-b border-white/5 bg-[#030303]">
       <div className="sticky top-0 h-screen overflow-hidden flex items-center">
-        {/* Market Ticker */}
-        <div className="absolute top-0 left-0 w-full z-20 py-4 bg-emerald-500/5 backdrop-blur-md border-b border-white/5 overflow-hidden">
-          <div className="flex items-center gap-12 animate-marquee whitespace-nowrap">
-            {[...Array(5)].map((_, i) => (
-              <div key={i} className="flex items-center gap-12">
-                {tokens.map(token => (
-                  <div key={token.name} className="relative group/token flex items-center gap-3 cursor-help">
-                    <span className="font-mono text-[10px] text-gray-500">{token.name}</span>
-                    <span className="font-mono text-xs text-white">{token.price}</span>
-                    <span className={`font-mono text-[10px] ${token.change.includes('+') ? 'text-emerald-400' : 'text-rose-400'}`}>{token.change}</span>
-                    
-                    {/* Detailed Tooltip */}
-                    <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-4 opacity-0 group-hover/token:opacity-100 transition-all pointer-events-none z-50">
-                      <div className="glass-card tech-border p-3 border border-white/10 bg-black/90 min-w-[140px] shadow-2xl">
-                        <div className="text-[8px] font-mono text-cyan-400 mb-2 tracking-widest uppercase">{token.name} STATS</div>
-                        <div className="space-y-1.5">
-                          <div className="flex justify-between gap-4 text-[9px] font-mono">
-                            <span className="text-gray-500">MKT_CAP</span>
-                            <span className="text-white">{token.cap}</span>
-                          </div>
-                          <div className="flex justify-between gap-4 text-[9px] font-mono">
-                            <span className="text-gray-500">24H_VOL</span>
-                            <span className="text-white">{token.vol}</span>
-                          </div>
-                        </div>
-                        <div className="mt-2 h-[1px] bg-white/5" />
-                        <div className="mt-1 text-[7px] font-mono text-emerald-400/50 uppercase italic text-center">SYCHRONIZED_REAL_TIME</div>
-                      </div>
+        {/* 3D Crypto Globe Canvas */}
+        <div className="absolute inset-0 z-0">
+          <CryptoGlobeCanvas scrollYProgress={scrollYProgress} mousePos={mousePos} />
+        </div>
+
+        <div className="max-w-7xl mx-auto px-6 w-full flex flex-col lg:flex-row items-center justify-between gap-16 relative z-10">
+          <div className="max-w-xl">
+             <div className="text-[10px] font-mono text-emerald-400 mb-6 uppercase tracking-[0.4em]">QUANTS_PROTOCOL</div>
+             <h2 className="text-5xl md:text-7xl font-display uppercase font-bold tracking-tighter mb-8 leading-none">
+               MARKET <br/><span className="text-white/20">QUANTUM</span> SYSTEM
+             </h2>
+             <p className="text-gray-400 font-sans leading-relaxed text-lg mb-10">
+               Real-time predictive analytics and liquidity profiling across global order books. Our recursive models extract signals with 0.8ms latency.
+             </p>
+             <div className="grid grid-cols-2 gap-8">
+               {tokens.map(token => (
+                 <div key={token.name} className="space-y-1">
+                   <div className="flex items-center gap-3">
+                     <span className="text-[10px] font-mono text-gray-600">{token.name}</span>
+                     <span className={`text-[10px] font-mono ${token.change.includes('+') ? 'text-emerald-400' : 'text-rose-400'}`}>{token.change}</span>
+                   </div>
+                   <div className="text-xl font-display font-medium text-white">{token.price}</div>
+                 </div>
+               ))}
+             </div>
+          </div>
+          
+          <div className="w-full lg:w-1/2 tech-border glass-card bg-emerald-400/[0.05] backdrop-blur-md p-8 relative overflow-hidden">
+             <div className="absolute inset-0 tech-grid opacity-10" />
+             <div className="text-[10px] font-mono text-emerald-400/50 mb-8 uppercase tracking-widest">LIVE_TRANSFERS_LOG</div>
+             <div className="space-y-6">
+                {[...Array(6)].map((_, i) => (
+                  <div key={i} className="flex justify-between items-center gap-8 border-b border-white/5 pb-4">
+                    <div className="flex items-center gap-3">
+                       <div className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                       <span className="text-[10px] font-mono text-gray-500 uppercase tracking-tighter">NODE_TRANS_{100 + i}</span>
                     </div>
+                    <div className="text-xs font-mono text-white">0.08ms</div>
                   </div>
                 ))}
-              </div>
-            ))}
+             </div>
           </div>
-        </div>
-        
-        {/* 3D Crypto Globe Canvas */}
-        <motion.div 
-          style={{ opacity: useTransform(scrollYProgress, [0, 0.1, 0.9, 1], [0.1, 1, 1, 0.1]) }}
-          className="absolute inset-0 z-0"
-        >
-          <CryptoGlobeCanvas scrollYProgress={scrollYProgress} mousePos={mousePos} />
-        </motion.div>
-
-        <div className="absolute inset-0 pointer-events-none z-10"><div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] bg-emerald-500/5 blur-[180px] rounded-full animate-pulse-slow" /></div>
-        
-        <div className="max-w-7xl mx-auto px-6 w-full grid lg:grid-cols-2 gap-24 items-center relative z-20">
-           <div className="relative">
-              <motion.div 
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                className="text-[10px] font-mono text-emerald-400 mb-6 uppercase tracking-[0.4em] flex items-center gap-3"
-              >
-                <span className="w-8 h-[1px] bg-emerald-400/30" />NEURAL QUANTITATIVE SYSTEMS
-              </motion.div>
-              <h2 className="text-5xl md:text-8xl font-display uppercase font-bold tracking-tighter mb-12 leading-[0.85]">MARKET <br/><span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-cyan-400 to-emerald-400 bg-[length:200%_auto] animate-gradient-flow">INTELLIGENCE</span></h2>
-              
-              <div className="relative h-96">
-                {[
-                  { title: "ALPHA_GENESIS", desc: "Recursive neural networks analyzing multi-exchange order books to extract high-fidelity alpha signals in microseconds.", color: "text-emerald-400", stats: ["LATENCY: 0.8ms", "CONFIDENCE: 99.4%"] },
-                  { title: "QUANT_MESH", desc: "Decentralized execution protocol that fragments orders across 12,000 global nodes to eliminate slippage and MEV front-running.", color: "text-cyan-400", stats: ["NODES: 12.4k", "SLIPPAGE: 0.001%"] },
-                  { title: "NEURAL_ARBITRAGE", desc: "Sub-millisecond cross-chain liquidity analysis utilizing predictive temporal models for zero-risk variance extraction.", color: "text-purple-400", stats: ["CROSS-CHAIN: 18", "VOLATILITY: ADAPTIVE"] }
-                ].map((item, i) => {
-                  const start = i * 0.33; const end = (i + 1) * 0.33;
-                  const opacity = useTransform(scrollYProgress, [start, start + 0.05, end - 0.05, end], [0, 1, 1, 0]);
-                  const y = useTransform(scrollYProgress, [start, start + 0.05, end - 0.05, end], [20, 0, 0, -20]);
-                  return (
-                    <motion.div key={i} style={{ opacity, y }} className="absolute inset-0 pointer-events-none">
-                      <h4 className={`text-4xl font-display uppercase font-bold mb-6 ${item.color} tracking-tight`}>{item.title}</h4>
-                      <p className="text-gray-400 text-xl leading-relaxed font-sans max-w-md mb-8">{item.desc}</p>
-                      <div className="flex gap-8 border-l-2 border-emerald-500/20 pl-8 mt-auto">{item.stats.map((stat, idx) => (<div key={idx} className="group/stat"><div className="text-[10px] font-mono text-gray-600 uppercase mb-2 tracking-widest">{stat.split(': ')[0]}</div><div className="text-lg font-mono text-white group-hover:text-emerald-400 transition-colors">{stat.split(': ')[1]}</div></div>))}</div>
-                    </motion.div>
-                  );
-                })}
-              </div>
-
-              <div className="mt-16 flex flex-wrap gap-6 relative z-30">
-                 {[ 
-                   { label: 'WALLET_SYNC', icon: <Zap size={16} />, detail: 'CONNECTED_NODES: 1.2k' }, 
-                   { label: 'EXCHANGE_LINK', icon: <TrendingUp size={16} />, detail: 'LIQUIDITY_DEPTH: ACTIVE' } 
-                 ].map((mod, i) => (
-                   <motion.div
-                     key={i}
-                     whileHover={{ scale: 1.02, y: -5 }}
-                     className="group relative"
-                   >
-                     <button className="px-8 py-4 tech-border glass-card bg-emerald-400/5 hover:bg-emerald-400/10 transition-all text-xs font-mono text-emerald-400 uppercase tracking-[0.2em] flex items-center gap-4 border border-emerald-400/20 backdrop-blur-xl">
-                       {mod.icon}
-                       <span>{mod.label}</span>
-                       <ArrowRight size={14} className="opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0" />
-                     </button>
-                     <div className="absolute top-full left-0 mt-4 opacity-0 group-hover:opacity-100 transition-all pointer-events-none">
-                        <div className="glass-card tech-border p-3 border border-emerald-400/10 bg-black/80">
-                           <div className="text-[8px] font-mono text-gray-500 tracking-tighter">{mod.detail}</div>
-                           <div className="w-full h-1 bg-emerald-400/20 mt-2 overflow-hidden">
-                              <motion.div initial={{ x: '-100%' }} animate={{ x: '100%' }} transition={{ duration: 1.5, repeat: Infinity }} className="w-1/2 h-full bg-emerald-400" />
-                           </div>
-                        </div>
-                     </div>
-                   </motion.div>
-                 ))}
-              </div>
-           </div>
-
-           <div className="relative h-[60vh] flex items-center justify-center">
-              {/* Interaction Details Overlay */}
-              <div className="absolute top-0 right-0 z-10 glass-card tech-border p-6 border border-white/5 bg-black/40 backdrop-blur-md">
-                 <div className="text-[10px] font-mono text-emerald-400 animate-pulse mb-3 uppercase tracking-widest">LIVE_TRANSFERS</div>
-                 <div className="space-y-4">
-                    {[
-                      { id: '0x71...f2e', amount: '+12.4 ETH', time: 'LIVE' },
-                      { id: '0x1c...9b8', amount: '-4.8 BTC', time: 'WAITING' }
-                    ].map((tx, i) => (
-                      <div key={i} className="flex flex-col gap-1">
-                        <div className="text-[8px] font-mono text-gray-500">{tx.id}</div>
-                        <div className="text-xs font-mono text-white flex justify-between items-center gap-4">
-                          <span>{tx.amount}</span>
-                          <span className="text-[8px] px-1 bg-emerald-500/20 text-emerald-400 rounded">{tx.time}</span>
-                        </div>
-                      </div>
-                    ))}
-                 </div>
-              </div>
-              
-              <div className="absolute bottom-0 left-0 z-10 glass-card tech-border p-6 border border-white/5 bg-black/40 backdrop-blur-md">
-                 <div className="text-[10px] font-mono text-cyan-400 mb-3 uppercase tracking-widest">NETWORK_LATENCY</div>
-                 <div className="flex items-end gap-1 h-8">
-                    {[...Array(12)].map((_, i) => (
-                      <motion.div 
-                        key={i} 
-                        initial={{ height: 4 }}
-                        animate={{ height: 4 + Math.random() * 24 }}
-                        transition={{ duration: 0.5, repeat: Infinity, repeatType: 'reverse', delay: i * 0.05 }}
-                        className="w-1 bg-cyan-400/40"
-                      />
-                    ))}
-                 </div>
-                 <div className="text-xs font-mono text-white mt-2">0.08ms</div>
-              </div>
-           </div>
         </div>
       </div>
     </section>
@@ -493,6 +351,29 @@ const Home = () => {
         </section>
         
         <section className="px-6 py-48 bg-white/[0.01] relative overflow-hidden"><div className="absolute inset-0 tech-grid opacity-10" /><motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} className="max-w-5xl mx-auto text-center relative z-10"><h2 className="text-4xl md:text-6xl font-display mb-12 uppercase tracking-tighter italic font-bold">"The stars of the next century will be built from neurons, not fusion."</h2><div className="w-16 h-1 bg-cyan-400 mx-auto mb-8" /><p className="text-gray-500 font-mono text-[10px] uppercase tracking-[0.4em]">NEURONOVA LABORATORY MANIFESTO // V4.2.1</p></motion.div></section>
+
+        {/* Large Logo Branding Section */}
+        <section className="py-32 flex flex-col items-center justify-center border-t border-white/5 bg-black relative overflow-hidden">
+          <div className="absolute inset-0 tech-grid opacity-5 pointer-events-none" />
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1.2, ease: "easeOut" }}
+            className="w-48 h-48 md:w-72 md:h-72 relative group"
+          >
+            <div className="absolute inset-0 bg-cyan-400/10 blur-[120px] group-hover:bg-cyan-400/20 transition-all rounded-full" />
+            <img 
+              src="https://res.cloudinary.com/dodhvvewu/image/upload/v1777982271/123b0cdb-1074-4cfd-9954-0f6fed36f089_zmu6h1.png" 
+              alt="NeuroNova Lab" 
+              className="w-full h-full object-contain relative z-10 brightness-110 drop-shadow-[0_0_30px_rgba(34,211,238,0.2)]"
+              referrerPolicy="no-referrer"
+            />
+          </motion.div>
+          <div className="mt-16 text-center">
+            <div className="text-[10px] font-mono text-gray-600 uppercase tracking-[0.6em] mb-4">ARCHITECTING_THE_FUTURE</div>
+            <div className="w-12 h-[1px] bg-white/10 mx-auto" />
+          </div>
+        </section>
       </div>
     </div>
   );
@@ -590,11 +471,37 @@ export default function App() {
       <div className="min-h-screen bg-[#050505] text-white">
         <Navbar />
         <MainContent />
-        <footer className="border-t border-white/10 py-12 px-6 mt-32">
-          <div className="max-w-7xl mx-auto grid md:grid-cols-4 gap-12 text-sm">
-            <div className="col-span-2"><div className="flex items-center gap-3 mb-6 font-display font-bold text-lg uppercase italic">NeuroNova Lab</div><p className="text-gray-500 max-w-sm mb-6">Redefining the cognitive landscape through neural architecture and ethical research.</p></div>
-            <div><h4 className="text-white font-display mb-4 uppercase tracking-widest text-xs">Navigation</h4><ul className="space-y-2 text-gray-500 font-mono"><li><Link to="/about" className="hover:text-white">ABOUT</Link></li><li><Link to="/projects" className="hover:text-white">PROJECTS</Link></li><li><Link to="/research" className="hover:text-white">RESEARCH</Link></li><li><Link to="/careers" className="hover:text-white">CAREERS</Link></li></ul></div>
-            <div><h4 className="text-white font-display mb-4 uppercase tracking-widest text-xs">Contact</h4><p className="text-gray-500 font-mono">LAB@NEURONOVA.TECH</p><p className="text-gray-500 font-mono mt-2">BANGALORE, INDIA</p></div>
+        <footer className="border-t border-white/10 py-24 px-6 mt-32 bg-[#030303]">
+          <div className="max-w-7xl mx-auto grid md:grid-cols-4 gap-16 text-sm">
+            <div className="col-span-2">
+              <div className="flex items-center gap-4 mb-8">
+                <div className="w-12 h-12 tech-border glass-card p-2">
+                  <img 
+                    src="https://res.cloudinary.com/dodhvvewu/image/upload/v1777982271/123b0cdb-1074-4cfd-9954-0f6fed36f089_zmu6h1.png" 
+                    alt="Logo" 
+                    className="w-full h-full object-contain brightness-125"
+                    referrerPolicy="no-referrer"
+                  />
+                </div>
+                <div className="font-display font-bold text-2xl uppercase italic tracking-tighter">NeuroNova Lab</div>
+              </div>
+              <p className="text-gray-500 max-w-sm mb-8 leading-relaxed font-sans">
+                Redefining the cognitive landscape through advanced neural architecture, decentralized infrastructure, and ethically-aligned research.
+              </p>
+              <div className="flex gap-4">
+                <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                <span className="text-[10px] font-mono text-gray-600 uppercase tracking-widest">Global Ops: Active</span>
+              </div>
+            </div>
+            <div><h4 className="text-white font-display mb-6 uppercase tracking-[0.2em] text-[10px] font-bold">Navigation</h4><ul className="space-y-3 text-gray-500 font-mono text-xs"><li><Link to="/about" className="hover:text-cyan-400 transition-colors tracking-widest">ABOUT_LAB</Link></li><li><Link to="/projects" className="hover:text-cyan-400 transition-colors tracking-widest">PROJECT_NODES</Link></li><li><Link to="/research" className="hover:text-cyan-400 transition-colors tracking-widest">RESEARCH_PAPERS</Link></li><li><Link to="/careers" className="hover:text-cyan-400 transition-colors tracking-widest">OPEN_POSITIONS</Link></li></ul></div>
+            <div><h4 className="text-white font-display mb-6 uppercase tracking-[0.2em] text-[10px] font-bold">Contact</h4><p className="text-gray-500 font-mono text-xs tracking-widest">LAB@NEURONOVA.TECH</p><p className="text-gray-500 font-mono mt-4 text-xs tracking-widest">BANGALORE, INDIA<br />// SILICON_HUB_CORE</p></div>
+          </div>
+          <div className="max-w-7xl mx-auto mt-24 pt-8 border-t border-white/5 flex flex-wrap justify-between gap-8">
+            <p className="text-[9px] font-mono text-gray-700 uppercase tracking-widest">© 2024 NEURONOVA LABORATORY // ALL_RIGHTS_RESERVED</p>
+            <div className="flex gap-8 text-[9px] font-mono text-gray-700 uppercase tracking-widest">
+              <span className="cursor-pointer hover:text-white transition-colors">Security_Protocol</span>
+              <span className="cursor-pointer hover:text-white transition-colors">Privacy_Core</span>
+            </div>
           </div>
         </footer>
       </div>

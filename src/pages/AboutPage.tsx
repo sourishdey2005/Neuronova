@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { Shield, Target, Cpu, Globe, Zap, Users, ArrowRight } from 'lucide-react';
+import { Shield, Target, Zap, ArrowRight } from 'lucide-react';
 
 const AboutPage = () => {
   return (
@@ -72,122 +72,103 @@ const AboutPage = () => {
       {/* Strategic Roadmap - How We Deliver */}
       <section className="py-32 px-6">
         <div className="max-w-7xl mx-auto">
-          <div className="mb-24 text-center">
+          <div className="mb-32">
             <div className="text-[10px] font-mono text-cyan-400 mb-6 uppercase tracking-[0.4em]">SYSTEM_MODELS</div>
-            <h2 className="text-5xl md:text-8xl font-display font-bold uppercase tracking-tighter leading-none">
+            <h2 className="text-5xl md:text-8xl font-display font-bold uppercase tracking-tighter leading-none mb-12">
               ENGINEERING <br /><span className="text-white/20">METHODOLOGY</span>
             </h2>
+            <p className="text-gray-500 text-lg max-w-2xl font-sans leading-relaxed">
+              Our operational framework is built on vertical integration—controlling every variable from the compute substrate to the application layer to ensure absolute performance and security.
+            </p>
           </div>
 
-          <div className="space-y-48">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-y-24 gap-x-12">
             {/* Step 01: Velocity */}
-            <div className="grid lg:grid-cols-2 gap-24 items-center">
-              <div className="relative">
-                <div className="absolute -left-8 top-0 text-7xl font-display font-bold text-white/5">01</div>
-                <div className="text-[10px] font-mono text-cyan-400 mb-4 uppercase tracking-[0.3em]">ACCELERATION</div>
-                <h3 className="text-4xl font-display font-bold uppercase mb-6 tracking-tight">AI-AUGMENTED <br />DEVELOPMENT</h3>
-                <p className="text-gray-400 leading-relaxed font-sans mb-8">
-                  Our engineering workflows are augmented by proprietary neural agents that handle code review, test generation, and architectural evaluation. This integration allows us to bridge the gap from concept to deployment 5x faster than traditional product teams.
-                </p>
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="p-4 border border-white/5 bg-white/[0.02] rounded">
-                    <div className="text-xl font-display font-bold text-white mb-1">60%</div>
-                    <div className="text-[9px] font-mono text-gray-500 uppercase">Faster Delivery</div>
-                  </div>
-                  <div className="p-4 border border-white/5 bg-white/[0.02] rounded">
-                    <div className="text-xl font-display font-bold text-white mb-1">100%</div>
-                    <div className="text-[9px] font-mono text-gray-500 uppercase">In-house Tooling</div>
-                  </div>
-                </div>
+            <div className="relative">
+              <div className="text-[64px] font-display font-bold text-white/[0.03] absolute -top-12 -left-4 pointer-events-none">01</div>
+              <div className="text-[10px] font-mono text-cyan-400 mb-6 uppercase tracking-[0.3em] flex items-center gap-3">
+                <span className="w-8 h-[1px] bg-cyan-400/30"></span> ACCELERATION
               </div>
-              <div className="aspect-video glass-card tech-border bg-white/5 relative overflow-hidden flex items-center justify-center">
-                <div className="text-[10px] font-mono text-cyan-400 opacity-20 uppercase tracking-[1em] animate-pulse">SYNCHRONIZING</div>
+              <h3 className="text-2xl font-display font-bold uppercase mb-6 tracking-tight">AI-AUGMENTED <br />DEVELOPMENT</h3>
+              <p className="text-gray-400 leading-relaxed font-sans text-sm mb-8">
+                Our engineering workflows are augmented by proprietary neural agents that handle code review, test generation, and architectural evaluation. This allows us to bridge the gap from concept to deployment 5x faster than traditional product teams.
+              </p>
+              <div className="space-y-4 pt-6 border-t border-white/5">
+                <div className="flex justify-between items-end">
+                  <span className="text-[10px] font-mono text-gray-500">EFFICIENCY_GAINS</span>
+                  <span className="text-xl font-display font-bold text-white">60%</span>
+                </div>
+                <div className="w-full h-[1px] bg-white/5 relative">
+                  <div className="absolute top-0 left-0 h-full w-[60%] bg-cyan-400/50" />
+                </div>
               </div>
             </div>
 
             {/* Step 02: Infrastructure */}
-            <div className="grid lg:grid-cols-2 gap-24 items-center">
-              <div className="order-2 lg:order-1 aspect-video glass-card tech-border bg-purple-500/5 flex items-center justify-center">
-                <div className="w-full max-w-xs space-y-2 opacity-30">
-                  <div className="h-1 bg-purple-400/50 w-full" />
-                  <div className="h-1 bg-purple-400/30 w-3/4" />
-                  <div className="h-1 bg-purple-400/20 w-1/2" />
-                </div>
+            <div className="relative">
+              <div className="text-[64px] font-display font-bold text-white/[0.03] absolute -top-12 -left-4 pointer-events-none">02</div>
+              <div className="text-[10px] font-mono text-purple-400 mb-6 uppercase tracking-[0.3em] flex items-center gap-3">
+                <span className="w-8 h-[1px] bg-purple-400/30"></span> COMPUTE_LAYER
               </div>
-              <div className="order-1 lg:order-2 relative">
-                <div className="absolute -left-8 top-0 text-7xl font-display font-bold text-white/5">02</div>
-                <div className="text-[10px] font-mono text-purple-400 mb-4 uppercase tracking-[0.3em]">COMPUTE_LAYER</div>
-                <h3 className="text-4xl font-display font-bold uppercase mb-6 tracking-tight">PROPRIETARY <br />INFRASTRUCTURE</h3>
-                <p className="text-gray-400 leading-relaxed font-sans mb-8">
-                  We operate a dedicated H-class GPU cluster. By owning the silicon substrate, we eliminate cloud markups and vendor lock-in, providing our clients with high-performance compute at hardware economics.
-                </p>
-                <ul className="space-y-4 font-mono text-[10px] text-gray-500 uppercase italic">
-                  <li className="flex items-center gap-3"><span className="w-1.5 h-1.5 bg-purple-400" /> Dedicated hardware allocation</li>
-                  <li className="flex items-center gap-3"><span className="w-1.5 h-1.5 bg-purple-400" /> Zero cloud-vendor premiums</li>
-                  <li className="flex items-center gap-3"><span className="w-1.5 h-1.5 bg-purple-400" /> Secure on-premise execution</li>
-                </ul>
+              <h3 className="text-2xl font-display font-bold uppercase mb-6 tracking-tight">PROPRIETARY <br />INFRASTRUCTURE</h3>
+              <p className="text-gray-400 leading-relaxed font-sans text-sm mb-8">
+                We operate a dedicated H-class GPU cluster. By owning the silicon substrate, we eliminate cloud markups and vendor lock-in, providing our clients with high-performance compute at hardware economics.
+              </p>
+              <div className="space-y-4 pt-6 border-t border-white/5">
+                <div className="flex justify-between items-end">
+                  <span className="text-[10px] font-mono text-gray-500">COST_REDUCTION</span>
+                  <span className="text-xl font-display font-bold text-white">70%</span>
+                </div>
+                <div className="w-full h-[1px] bg-white/5 relative">
+                  <div className="absolute top-0 left-0 h-full w-[70%] bg-purple-500/50" />
+                </div>
               </div>
             </div>
 
             {/* Step 03: Bespoke */}
-            <div className="grid lg:grid-cols-2 gap-24 items-center">
-              <div className="relative">
-                <div className="absolute -left-8 top-0 text-7xl font-display font-bold text-white/5">03</div>
-                <div className="text-[10px] font-mono text-emerald-400 mb-4 uppercase tracking-[0.3em]">SOLUTIONS</div>
-                <h3 className="text-4xl font-display font-bold uppercase mb-6 tracking-tight">ENGINEERED <br />SYSTEMS</h3>
-                <p className="text-gray-400 leading-relaxed font-sans mb-8">
-                  Custom AI tools and SaaS products built to your specific brief. We design, deploy, and maintain the entire ecosystem, ensuring your intellectual property remains secure and your performance remains optimal.
-                </p>
-                <div className="flex flex-wrap gap-2 uppercase font-mono text-[9px]">
-                  <span className="px-3 py-1 border border-white/10 rounded-full">Autonomous Agents</span>
-                  <span className="px-3 py-1 border border-white/10 rounded-full">RAG Architectures</span>
-                  <span className="px-3 py-1 border border-white/10 rounded-full">Deep Learning</span>
-                </div>
+            <div className="relative">
+              <div className="text-[64px] font-display font-bold text-white/[0.03] absolute -top-12 -left-4 pointer-events-none">03</div>
+              <div className="text-[10px] font-mono text-emerald-400 mb-6 uppercase tracking-[0.3em] flex items-center gap-3">
+                <span className="w-8 h-[1px] bg-emerald-400/30"></span> SOLUTIONS
               </div>
-              <div className="aspect-video glass-card tech-border bg-emerald-500/5 flex items-center justify-center">
-                <div className="text-center font-display font-bold uppercase text-white/10 text-2xl tracking-[0.5em]">BESPOKE</div>
+              <h3 className="text-2xl font-display font-bold uppercase mb-6 tracking-tight">ENGINEERED <br />SYSTEMS</h3>
+              <p className="text-gray-400 leading-relaxed font-sans text-sm mb-8">
+                Custom AI tools and SaaS products built to your specific brief. We design, deploy, and maintain the entire ecosystem, ensuring your intellectual property remains secure and your performance remains optimal.
+              </p>
+              <div className="space-y-4 pt-6 border-t border-white/5 text-[10px] font-mono text-gray-600">
+                <p>// FULL_STACK_INTEGRATION</p>
+                <p>// SECURE_IP_HANDOVER</p>
+                <p>// 24/7_OBSERVABILITY</p>
               </div>
             </div>
 
             {/* Step 04: Public Products */}
-            <div className="grid lg:grid-cols-2 gap-24 items-center">
-              <div className="order-2 lg:order-1 aspect-video glass-card tech-border bg-blue-500/5 flex items-center justify-center">
-                <div className="p-8 w-full">
-                  <div className="h-32 border border-white/5 rounded relative flex items-center justify-center overflow-hidden">
-                    <div className="absolute inset-0 tech-grid opacity-10" />
-                    <div className="text-[8px] font-mono text-blue-400 animate-pulse">SUBSCRIPTION_READY</div>
-                  </div>
-                </div>
+            <div className="relative">
+              <div className="text-[64px] font-display font-bold text-white/[0.03] absolute -top-12 -left-4 pointer-events-none">04</div>
+              <div className="text-[10px] font-mono text-blue-400 mb-6 uppercase tracking-[0.3em] flex items-center gap-3">
+                <span className="w-8 h-[1px] bg-blue-400/30"></span> ACCESSIBILITY
               </div>
-              <div className="order-1 lg:order-2 relative">
-                <div className="absolute -left-8 top-0 text-7xl font-display font-bold text-white/5">04</div>
-                <div className="text-[10px] font-mono text-blue-400 mb-4 uppercase tracking-[0.3em]">ACCESSIBILITY</div>
-                <h3 className="text-4xl font-display font-bold uppercase mb-6 tracking-tight">RESEARCH <br />ECOSYSTEMS</h3>
-                <p className="text-gray-400 leading-relaxed font-sans mb-8">
-                  Beyond bespoke client work, we deploy scalable public AI products. These tools leverage our internal infrastructure to provide users with high-fidelity intelligence at scale, with no maintenance required.
-                </p>
-                <button className="text-[10px] font-mono text-blue-400 flex items-center gap-2 hover:gap-4 transition-all">
-                  EXPLORE_REGISTRY <ArrowRight size={12} />
-                </button>
-              </div>
+              <h3 className="text-2xl font-display font-bold uppercase mb-6 tracking-tight">RESEARCH <br />ECOSYSTEMS</h3>
+              <p className="text-gray-400 leading-relaxed font-sans text-sm mb-8">
+                Beyond bespoke client work, we deploy scalable public AI products. These tools leverage our internal infrastructure to provide users with high-fidelity intelligence at scale, with no maintenance required.
+              </p>
+              <button className="text-[10px] font-mono text-blue-400 flex items-center gap-2 hover:gap-4 transition-all pt-4">
+                EXPLORE_REGISTRY <ArrowRight size={12} />
+              </button>
             </div>
 
             {/* Step 05: Enterprise */}
-            <div className="grid lg:grid-cols-2 gap-24 items-center">
-              <div className="relative">
-                <div className="absolute -left-8 top-0 text-7xl font-display font-bold text-white/5">05</div>
-                <div className="text-[10px] font-mono text-amber-400 mb-4 uppercase tracking-[0.3em]">DEDICATIONS</div>
-                <h3 className="text-4xl font-display font-bold uppercase mb-6 tracking-tight">ENTERPRISE <br />CLUSTERS</h3>
-                <p className="text-gray-400 leading-relaxed font-sans mb-8">
-                  For organizations requiring absolute isolation, we deploy private AI clusters on-premise or in dedicated data centers. Complete control, 24/7 monitoring, and 70% cheaper than hyperscale cloud providers.
-                </p>
-                <div className="bg-amber-400/5 border border-amber-400/20 p-6 rounded">
-                  <div className="text-[8px] font-mono text-amber-400 mb-2 uppercase">Secure Protocol Check:</div>
-                  <div className="text-sm font-sans italic text-gray-400">"Your box. Your rules. Our engineering."</div>
-                </div>
+            <div className="relative">
+              <div className="text-[64px] font-display font-bold text-white/[0.03] absolute -top-12 -left-4 pointer-events-none">05</div>
+              <div className="text-[10px] font-mono text-amber-400 mb-6 uppercase tracking-[0.3em] flex items-center gap-3">
+                <span className="w-8 h-[1px] bg-amber-400/30"></span> DEDICATIONS
               </div>
-              <div className="aspect-video glass-card tech-border bg-amber-500/5 flex items-center justify-center">
-                <div className="w-12 h-12 border-2 border-amber-400/20 rounded-full animate-ping" />
+              <h3 className="text-2xl font-display font-bold uppercase mb-6 tracking-tight">ENTERPRISE <br />CLUSTERS</h3>
+              <p className="text-gray-400 leading-relaxed font-sans text-sm mb-8">
+                For organizations requiring absolute isolation, we deploy private AI clusters on-premise or in dedicated data centers. Complete control, 24/7 monitoring, and 70% cheaper than hyperscale cloud providers.
+              </p>
+              <div className="px-4 py-3 border border-amber-400/20 bg-amber-400/5 rounded text-[10px] font-mono text-amber-400/80">
+                PRIVATE_DEDICATED_NODES_ACTIVE
               </div>
             </div>
           </div>

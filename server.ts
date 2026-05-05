@@ -20,16 +20,31 @@ async function startServer() {
 
   // Vite middleware for development
   if (process.env.NODE_ENV !== "production") {
+    console.log("Starting server in DEVELOPMENT mode");
     const vite = await createViteServer({
-      server: { middlewareMode: true },
+      server: { 
+        middlewareMode: true,
+        host: "0.0.0.0",
+        port: 3000
+      },
       appType: "spa",
     });
     app.use(vite.middlewares);
   } else {
-    const distPath = path.join(process.cwd(), "dist");
+    console.log("Starting server in PRODUCTION mode");
+    const distPath = path.resolve(__dirname, "dist");
+    console.log(`Serving static files from: ${distPath}`);
+    
     app.use(express.static(distPath));
+    
     app.get("*", (req, res) => {
-      res.sendFile(path.join(distPath, "index.html"));
+      const indexPath = path.join(distPath, "index.html");
+      res.sendFile(indexPath, (err) => {
+        if (err) {
+          console.error(`Error sending index.html from ${indexPath}:`, err);
+          res.status(404).send("Application not initialized. Please ensure build was successful.");
+        }
+      });
     });
   }
 
