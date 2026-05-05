@@ -19,7 +19,7 @@ export const TeamPage = () => {
         </div>
         <div className="p-4 tech-border glass-card bg-cyan-400/5 h-fit">
            <div className="text-[10px] font-mono text-cyan-400 uppercase tracking-widest mb-1">TOTAL_STAFF</div>
-           <div className="text-3xl font-display text-white">002 / 128</div>
+           <div className="text-3xl font-display text-white">42 / 128</div>
         </div>
       </motion.div>
 
