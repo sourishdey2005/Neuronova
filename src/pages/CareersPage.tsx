@@ -46,7 +46,52 @@ const JOBS = [
 ];
 
 const ApplicationModal = ({ onClose, jobTitle }: { onClose: () => void; jobTitle: string }) => {
-  const [submitted, setSubmitted] = useState(false);
+  const [formState, setFormState] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+  const [formData, setFormData] = useState({
+    fullName: '',
+    city: '',
+    education: '',
+    score: '',
+    portfolio: '',
+    linkedin: ''
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setFormState('submitting');
+
+    try {
+      const SCRIPT_URL = import.meta.env.VITE_GOOGLE_SHEET_WEBAPP_URL || '';
+      
+      if (!SCRIPT_URL) {
+        console.warn('Google Sheets URL missing. Simulation mode.');
+        await new Promise(r => setTimeout(r, 1500));
+        setFormState('success');
+        return;
+      }
+
+      await fetch(SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ...formData,
+          position: jobTitle,
+          type: 'Career Application'
+        }),
+      });
+
+      setFormState('success');
+    } catch (err) {
+      console.error('Submission error:', err);
+      setFormState('error');
+    }
+  };
 
   return (
     <motion.div 
@@ -67,7 +112,7 @@ const ApplicationModal = ({ onClose, jobTitle }: { onClose: () => void; jobTitle
             <X size={20} />
           </button>
 
-          {!submitted ? (
+          {formState !== 'success' ? (
             <div className="relative z-10">
               <div className="mb-8">
                 <div className="text-[10px] font-mono text-cyan-400 mb-2 uppercase tracking-[0.4em]">APPLICATION_FORM</div>
@@ -75,41 +120,51 @@ const ApplicationModal = ({ onClose, jobTitle }: { onClose: () => void; jobTitle
                 <p className="text-gray-500 text-xs mt-2 font-mono uppercase">Please fill in your technical credentials</p>
               </div>
 
-              <form onSubmit={(e) => { e.preventDefault(); setSubmitted(true); }} className="space-y-4">
+              {formState === 'error' && (
+                <div className="p-3 bg-rose-500/10 border border-rose-500/30 text-rose-500 text-[10px] font-mono mb-4 uppercase">
+                  ERROR: CONNECTION_FAILURE. RETRY_TRANSMISSION.
+                </div>
+              )}
+
+              <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="grid md:grid-cols-2 gap-4">
                   <div className="space-y-1">
                     <label className="text-[9px] font-mono text-gray-500 uppercase flex items-center gap-2"><User size={10} /> Name</label>
-                    <input required className="w-full bg-white/[0.03] border border-white/10 rounded p-2 focus:border-cyan-400/50 outline-none transition-all text-sm font-sans" placeholder="Alan Turing" />
+                    <input name="fullName" value={formData.fullName} onChange={handleChange} required className="w-full bg-white/[0.03] border border-white/10 rounded p-2 focus:border-cyan-400/50 outline-none transition-all text-sm font-sans" placeholder="Alan Turing" />
                   </div>
                   <div className="space-y-1">
                     <label className="text-[9px] font-mono text-gray-500 uppercase flex items-center gap-2"><MapPin size={10} /> City</label>
-                    <input required className="w-full bg-white/[0.03] border border-white/10 rounded p-2 focus:border-cyan-400/50 outline-none transition-all text-sm font-sans" placeholder="Bangalore" />
+                    <input name="city" value={formData.city} onChange={handleChange} required className="w-full bg-white/[0.03] border border-white/10 rounded p-2 focus:border-cyan-400/50 outline-none transition-all text-sm font-sans" placeholder="Bangalore" />
                   </div>
                 </div>
 
                 <div className="grid md:grid-cols-2 gap-4">
                   <div className="space-y-1">
                     <label className="text-[9px] font-mono text-gray-500 uppercase flex items-center gap-2"><GraduationCap size={10} /> Education</label>
-                    <input required className="w-full bg-white/[0.03] border border-white/10 rounded p-2 focus:border-cyan-400/50 outline-none transition-all text-sm font-sans" placeholder="PhD in Neural Systems" />
+                    <input name="education" value={formData.education} onChange={handleChange} required className="w-full bg-white/[0.03] border border-white/10 rounded p-2 focus:border-cyan-400/50 outline-none transition-all text-sm font-sans" placeholder="PhD in Neural Systems" />
                   </div>
                   <div className="space-y-1">
                     <label className="text-[9px] font-mono text-gray-500 uppercase flex items-center gap-2"><Zap size={10} /> CGPA / Score</label>
-                    <input required className="w-full bg-white/[0.03] border border-white/10 rounded p-2 focus:border-cyan-400/50 outline-none transition-all text-sm font-sans" placeholder="9.5 / 10" />
+                    <input name="score" value={formData.score} onChange={handleChange} required className="w-full bg-white/[0.03] border border-white/10 rounded p-2 focus:border-cyan-400/50 outline-none transition-all text-sm font-sans" placeholder="9.5 / 10" />
                   </div>
                 </div>
 
                 <div className="space-y-1">
                   <label className="text-[9px] font-mono text-gray-500 uppercase flex items-center gap-2"><LinkIcon size={10} /> CV / Portfolio Link</label>
-                  <input required type="url" className="w-full bg-white/[0.03] border border-white/10 rounded p-2 focus:border-cyan-400/50 outline-none transition-all text-sm font-sans" placeholder="https://..." />
+                  <input name="portfolio" value={formData.portfolio} onChange={handleChange} required type="url" className="w-full bg-white/[0.03] border border-white/10 rounded p-2 focus:border-cyan-400/50 outline-none transition-all text-sm font-sans" placeholder="https://..." />
                 </div>
 
                 <div className="space-y-1">
                   <label className="text-[9px] font-mono text-gray-500 uppercase flex items-center gap-2"><Building size={10} /> LinkedIn Profile</label>
-                  <input required type="url" className="w-full bg-white/[0.03] border border-white/10 rounded p-2 focus:border-cyan-400/50 outline-none transition-all text-sm font-sans" placeholder="https://linkedin.com/in/..." />
+                  <input name="linkedin" value={formData.linkedin} onChange={handleChange} required type="url" className="w-full bg-white/[0.03] border border-white/10 rounded p-2 focus:border-cyan-400/50 outline-none transition-all text-sm font-sans" placeholder="https://linkedin.com/in/..." />
                 </div>
 
-                <button type="submit" className="w-full button-primary py-3 rounded text-xs font-bold uppercase tracking-widest mt-6 flex items-center justify-center gap-2">
-                  SUBMIT_APPLICATION <ArrowRight size={14} />
+                <button 
+                  type="submit" 
+                  disabled={formState === 'submitting'}
+                  className="w-full button-primary py-3 rounded text-xs font-bold uppercase tracking-widest mt-6 flex items-center justify-center gap-2 disabled:opacity-50"
+                >
+                  {formState === 'submitting' ? 'SYNCING...' : 'SUBMIT_APPLICATION'} <ArrowRight size={14} />
                 </button>
               </form>
             </div>
