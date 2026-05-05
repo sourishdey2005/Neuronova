@@ -451,7 +451,21 @@ const Home = () => {
         <NeuralIntelligenceSection />
         <DataScienceIntelligenceSection />
 
-        <section className="relative py-32 px-6"><div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-24 items-center"><div><div className="text-[10px] font-mono text-cyan-400 mb-6 uppercase tracking-[0.4em]">SYSTEM TOPOLOGY</div><h2 className="text-5xl md:text-7xl font-display uppercase font-bold tracking-tighter mb-8 leading-tight">GLOBAL <br/><span className="text-white/20">INFRASTRUCTURE</span></h2><p className="text-gray-400 text-lg mb-12 max-w-xl">NeuroNova operates across a decentralized mesh of 12,000+ nodes, ensuring sub-10ms latency for global neural synchronization.</p></div><div className="relative aspect-square tech-border glass-card flex items-center justify-center overflow-hidden"><div className="absolute inset-0 opacity-10 tech-grid" /><div className="w-32 h-32 tech-border flex items-center justify-center p-4 bg-cyan-400/5 text-cyan-400 font-mono text-[8px] text-center uppercase tracking-widest">NODE_ALPHA<br/>STATUS: OK</div></div></div></section>
+        <section className="relative py-32 px-6"><div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-24 items-center"><div><div className="text-[10px] font-mono text-cyan-400 mb-6 uppercase tracking-[0.4em]">SYSTEM TOPOLOGY</div><h2 className="text-5xl md:text-7xl font-display uppercase font-bold tracking-tighter mb-8 leading-tight">GLOBAL <br/><span className="text-white/20">INFRASTRUCTURE</span></h2><p className="text-gray-400 text-lg mb-12 max-w-xl">NeuroNova operates across a decentralized mesh of 12,000+ nodes, ensuring sub-10ms latency for global neural synchronization.</p>
+            <div className="flex items-center gap-6 mt-8">
+              <div className="w-24 h-24 tech-border glass-card p-4 flex items-center justify-center">
+                <img 
+                  src="https://res.cloudinary.com/dodhvvewu/image/upload/v1777982271/123b0cdb-1074-4cfd-9954-0f6fed36f089_zmu6h1.png" 
+                  alt="NeuroNova Logo" 
+                  className="w-full h-full object-contain opacity-90 brightness-110"
+                />
+              </div>
+              <div className="h-12 w-[1px] bg-white/10" />
+              <div className="text-[10px] font-mono text-gray-500 uppercase tracking-widest leading-relaxed">
+                OFFICIAL<br />LABORATORY<br />CERTIFIED
+              </div>
+            </div>
+          </div><div className="relative aspect-square tech-border glass-card flex items-center justify-center overflow-hidden"><div className="absolute inset-0 opacity-10 tech-grid" /><div className="w-32 h-32 tech-border flex items-center justify-center p-4 bg-cyan-400/5 text-cyan-400 font-mono text-[8px] text-center uppercase tracking-widest">NODE_ALPHA<br/>STATUS: OK</div></div></div></section>
         
         <section className="px-6 py-48 bg-white/[0.01] relative overflow-hidden"><div className="absolute inset-0 tech-grid opacity-10" /><motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} className="max-w-5xl mx-auto text-center relative z-10"><h2 className="text-4xl md:text-6xl font-display mb-12 uppercase tracking-tighter italic font-bold">"The stars of the next century will be built from neurons, not fusion."</h2><div className="w-16 h-1 bg-cyan-400 mx-auto mb-8" /><p className="text-gray-500 font-mono text-[10px] uppercase tracking-[0.4em]">NEURONOVA LABORATORY MANIFESTO // V4.2.1</p></motion.div></section>
       </div>
