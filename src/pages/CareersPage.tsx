@@ -41,7 +41,7 @@ const JOBS = [
     location: 'Bangalore / Remote',
     type: 'Internship',
     category: 'Intern',
-    compensation: '₹50k - ₹80k / Month'
+    compensation: '₹0 (Unpaid)'
   }
 ];
 

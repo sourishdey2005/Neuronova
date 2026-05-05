@@ -273,10 +273,10 @@ const MarketIntelligenceSection = () => {
   }, []);
 
   const tokens = [
-    { name: 'BTC', price: '₹54,28,100', change: '+2.4%', color: 'text-orange-400' },
-    { name: 'ETH', price: '₹2,84,200', change: '+1.8%', color: 'text-purple-400' },
-    { name: 'SOL', price: '₹11,840', change: '+5.2%', color: 'text-cyan-400' },
-    { name: 'NOVA', price: '₹92.40', change: '+12.4%', color: 'text-emerald-400' },
+    { name: 'BTC', price: '₹54,28,100', change: '+2.4%', color: 'text-orange-400', cap: '₹102T', vol: '₹2.8T' },
+    { name: 'ETH', price: '₹2,84,200', change: '+1.8%', color: 'text-purple-400', cap: '₹34T', vol: '₹1.2T' },
+    { name: 'SOL', price: '₹11,840', change: '+5.2%', color: 'text-cyan-400', cap: '₹5.2T', vol: '₹0.6T' },
+    { name: 'NOVA', price: '₹92.40', change: '+12.4%', color: 'text-emerald-400', cap: '₹850B', vol: '₹120M' },
   ];
 
   return (
@@ -288,7 +288,30 @@ const MarketIntelligenceSection = () => {
             {[...Array(5)].map((_, i) => (
               <div key={i} className="flex items-center gap-12">
                 {tokens.map(token => (
-                  <div key={token.name} className="flex items-center gap-3"><span className="font-mono text-[10px] text-gray-500">{token.name}</span><span className="font-mono text-xs text-white">{token.price}</span><span className={`font-mono text-[10px] ${token.change.includes('+') ? 'text-emerald-400' : 'text-rose-400'}`}>{token.change}</span></div>
+                  <div key={token.name} className="relative group/token flex items-center gap-3 cursor-help">
+                    <span className="font-mono text-[10px] text-gray-500">{token.name}</span>
+                    <span className="font-mono text-xs text-white">{token.price}</span>
+                    <span className={`font-mono text-[10px] ${token.change.includes('+') ? 'text-emerald-400' : 'text-rose-400'}`}>{token.change}</span>
+                    
+                    {/* Detailed Tooltip */}
+                    <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-4 opacity-0 group-hover/token:opacity-100 transition-all pointer-events-none z-50">
+                      <div className="glass-card tech-border p-3 border border-white/10 bg-black/90 min-w-[140px] shadow-2xl">
+                        <div className="text-[8px] font-mono text-cyan-400 mb-2 tracking-widest uppercase">{token.name} STATS</div>
+                        <div className="space-y-1.5">
+                          <div className="flex justify-between gap-4 text-[9px] font-mono">
+                            <span className="text-gray-500">MKT_CAP</span>
+                            <span className="text-white">{token.cap}</span>
+                          </div>
+                          <div className="flex justify-between gap-4 text-[9px] font-mono">
+                            <span className="text-gray-500">24H_VOL</span>
+                            <span className="text-white">{token.vol}</span>
+                          </div>
+                        </div>
+                        <div className="mt-2 h-[1px] bg-white/5" />
+                        <div className="mt-1 text-[7px] font-mono text-emerald-400/50 uppercase italic text-center">SYCHRONIZED_REAL_TIME</div>
+                      </div>
+                    </div>
+                  </div>
                 ))}
               </div>
             ))}
