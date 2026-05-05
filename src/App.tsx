@@ -13,6 +13,98 @@ import { ContactPage } from './pages/ContactPage';
 import { NeuralNetwork3D } from './components/NeuralNetwork3D';
 import { CryptoGlobeCanvas } from './components/CryptoGlobe3D';
 import { NeuralGlobe3D } from './components/NeuralGlobe3D';
+import { DataFabricEngine3D } from './components/DataFabricEngine3D';
+
+const DataScienceIntelligenceSection = () => {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start start", "end end"] });
+  
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!sectionRef.current) return;
+      const rect = sectionRef.current.getBoundingClientRect();
+      setMousePos({
+        x: (e.clientX - rect.left) / rect.width - 0.5,
+        y: (e.clientY - rect.top) / rect.height - 0.5,
+      });
+    };
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
+  return (
+    <section ref={sectionRef} className="relative h-[150vh] overflow-hidden bg-black/20">
+      <div className="sticky top-0 h-screen flex items-center justify-center">
+        {/* Background Canvas */}
+        <div className="absolute inset-0 z-0">
+          <DataFabricEngine3D scrollYProgress={scrollYProgress} mousePos={mousePos} />
+        </div>
+
+        {/* Technical Overlays */}
+        <div className="absolute inset-0 pointer-events-none z-10 px-10">
+          <div className="absolute top-1/4 left-10">
+             <div className="text-[10px] font-mono text-emerald-400 mb-2 tracking-[0.3em]">DATA_LIFECYCLE</div>
+             <div className="w-48 h-[1px] bg-emerald-400/20" />
+             <div className="mt-4 space-y-2">
+                {['INGEST', 'TRANSFORM', 'VECTORIZE', 'SYNTHESIZE'].map((s, i) => (
+                  <div key={i} className="flex items-center gap-2">
+                    <div className="w-1 h-1 bg-emerald-400/40 rounded-full" />
+                    <div className="text-[8px] font-mono text-gray-500">{s}</div>
+                  </div>
+                ))}
+             </div>
+          </div>
+          
+          <div className="absolute bottom-1/4 right-10 text-right">
+             <div className="text-[10px] font-mono text-purple-400 mb-2 tracking-[0.3em]">PROCESSING_LOAD</div>
+             <div className="w-48 h-[1px] bg-purple-400/20 ml-auto" />
+             <div className="mt-4 flex flex-col items-end gap-1">
+                {[...Array(4)].map((_, i) => (
+                   <div key={i} className="flex gap-1">
+                      {[...Array(8)].map((_, j) => (
+                        <motion.div 
+                          key={j} 
+                          animate={{ opacity: [0.1, 0.5, 0.1] }} 
+                          transition={{ duration: 1, delay: (i + j) * 0.1, repeat: Infinity }}
+                          className="w-2 h-2 bg-purple-400/20" 
+                        />
+                      ))}
+                   </div>
+                ))}
+             </div>
+          </div>
+        </div>
+
+        <div className="relative z-20 text-center max-w-4xl px-6 pointer-events-none">
+           <motion.div 
+             style={{ 
+               opacity: useTransform(scrollYProgress, [0, 0.1, 0.9, 1], [0, 1, 1, 0]),
+               y: useTransform(scrollYProgress, [0, 1], [20, -20])
+             }}
+             className="space-y-6"
+           >
+              <h2 className="text-6xl md:text-8xl font-display uppercase font-bold tracking-tighter leading-none">
+                DATA <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">FABRIC</span> ENGINE
+              </h2>
+              <p className="text-gray-400 font-mono text-xs uppercase tracking-[0.5em]">Real-time Intelligence Synthesis Pipeline</p>
+              
+              <div className="flex justify-center gap-12 mt-12">
+                 <div className="text-center group">
+                    <div className="text-[8px] font-mono text-emerald-400/50 mb-1">LATENCY</div>
+                    <div className="text-xl font-mono text-white tracking-widest">0.02ms</div>
+                 </div>
+                 <div className="text-center group border-l border-white/5 pl-12">
+                    <div className="text-[8px] font-mono text-purple-400/50 mb-1">THROUGHPUT</div>
+                    <div className="text-xl font-mono text-white tracking-widest">12.4 PB/S</div>
+                 </div>
+              </div>
+           </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+};
 
 const NeuralIntelligenceSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -357,6 +449,7 @@ const Home = () => {
         
         <MarketIntelligenceSection />
         <NeuralIntelligenceSection />
+        <DataScienceIntelligenceSection />
 
         <section className="relative py-32 px-6"><div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-24 items-center"><div><div className="text-[10px] font-mono text-cyan-400 mb-6 uppercase tracking-[0.4em]">SYSTEM TOPOLOGY</div><h2 className="text-5xl md:text-7xl font-display uppercase font-bold tracking-tighter mb-8 leading-tight">GLOBAL <br/><span className="text-white/20">INFRASTRUCTURE</span></h2><p className="text-gray-400 text-lg mb-12 max-w-xl">NeuroNova operates across a decentralized mesh of 12,000+ nodes, ensuring sub-10ms latency for global neural synchronization.</p></div><div className="relative aspect-square tech-border glass-card flex items-center justify-center overflow-hidden"><div className="absolute inset-0 opacity-10 tech-grid" /><div className="w-32 h-32 tech-border flex items-center justify-center p-4 bg-cyan-400/5 text-cyan-400 font-mono text-[8px] text-center uppercase tracking-widest">NODE_ALPHA<br/>STATUS: OK</div></div></div></section>
         
