@@ -33,12 +33,15 @@ const NeuralIntelligenceSection = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative h-[250vh] bg-black overflow-hidden">
+    <section ref={sectionRef} className="relative h-[150vh] overflow-hidden">
       <div className="sticky top-0 h-screen flex items-center justify-center">
         {/* Background Neural Mist / Space */}
-        <div className="absolute inset-0 z-0">
+        <motion.div 
+          style={{ opacity: useTransform(scrollYProgress, [0, 0.1, 0.9, 1], [0.1, 1, 1, 0.1]) }}
+          className="absolute inset-0 z-0"
+        >
           <NeuralGlobe3D scrollYProgress={scrollYProgress} mousePos={mousePos} />
-        </div>
+        </motion.div>
 
         {/* Technical Overlays */}
         <div className="absolute inset-0 pointer-events-none z-10">
@@ -61,7 +64,10 @@ const NeuralIntelligenceSection = () => {
 
         <div className="relative z-20 text-center max-w-4xl px-6">
            <motion.div 
-             style={{ opacity: useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]) }}
+             style={{ 
+               opacity: useTransform(scrollYProgress, [0, 0.1, 0.9, 1], [0, 1, 1, 0]),
+               scale: useTransform(scrollYProgress, [0, 0.1, 0.9, 1], [0.95, 1, 1, 0.95])
+             }}
              className="space-y-6"
            >
               <h2 className="text-6xl md:text-8xl font-display uppercase font-bold tracking-tighter leading-none">
@@ -181,7 +187,7 @@ const MarketIntelligenceSection = () => {
   ];
 
   return (
-    <section ref={sectionRef} className="relative h-[250vh] bg-black">
+    <section ref={sectionRef} className="relative h-[150vh]">
       <div className="sticky top-0 h-screen overflow-hidden flex items-center">
         {/* Market Ticker */}
         <div className="absolute top-0 left-0 w-full z-20 py-4 bg-emerald-500/5 backdrop-blur-md border-b border-white/5 overflow-hidden">
@@ -195,11 +201,14 @@ const MarketIntelligenceSection = () => {
             ))}
           </div>
         </div>
-
+        
         {/* 3D Crypto Globe Canvas */}
-        <div className="absolute inset-0 z-0">
+        <motion.div 
+          style={{ opacity: useTransform(scrollYProgress, [0, 0.1, 0.9, 1], [0.1, 1, 1, 0.1]) }}
+          className="absolute inset-0 z-0"
+        >
           <CryptoGlobeCanvas scrollYProgress={scrollYProgress} mousePos={mousePos} />
-        </div>
+        </motion.div>
 
         <div className="absolute inset-0 pointer-events-none z-10"><div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] bg-emerald-500/5 blur-[180px] rounded-full animate-pulse-slow" /></div>
         
@@ -220,7 +229,7 @@ const MarketIntelligenceSection = () => {
                   { title: "QUANT_MESH", desc: "Decentralized execution protocol that fragments orders across 12,000 global nodes to eliminate slippage and MEV front-running.", color: "text-cyan-400", stats: ["NODES: 12.4k", "SLIPPAGE: 0.001%"] },
                   { title: "NEURAL_ARBITRAGE", desc: "Sub-millisecond cross-chain liquidity analysis utilizing predictive temporal models for zero-risk variance extraction.", color: "text-purple-400", stats: ["CROSS-CHAIN: 18", "VOLATILITY: ADAPTIVE"] }
                 ].map((item, i) => {
-                  const start = i * 0.3; const end = (i + 1) * 0.3;
+                  const start = i * 0.33; const end = (i + 1) * 0.33;
                   const opacity = useTransform(scrollYProgress, [start, start + 0.05, end - 0.05, end], [0, 1, 1, 0]);
                   const y = useTransform(scrollYProgress, [start, start + 0.05, end - 0.05, end], [20, 0, 0, -20]);
                   return (
