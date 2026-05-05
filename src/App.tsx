@@ -36,7 +36,7 @@ const DataScienceIntelligenceSection = () => {
   }, []);
   
   return (
-    <section ref={sectionRef} className="relative h-[200vh] bg-black/20">
+    <section ref={sectionRef} className="relative h-[150vh] bg-black/20">
       <div className="sticky top-0 h-screen flex items-center justify-center overflow-hidden">
         {/* Background Canvas */}
         <div className="absolute inset-0 z-0">
@@ -244,7 +244,7 @@ const MarketIntelligenceSection = () => {
           <CryptoGlobeCanvas scrollYProgress={scrollYProgress} mousePos={mousePos} />
         </div>
 
-        <div className="max-w-7xl mx-auto px-6 w-full flex flex-col lg:flex-row items-center justify-between gap-16 relative z-10">
+        <div className="max-w-7xl mx-auto px-6 w-full relative z-10">
           <div className="max-w-xl">
              <div className="text-[10px] font-mono text-emerald-400 mb-6 uppercase tracking-[0.4em]">QUANTS_PROTOCOL</div>
              <h2 className="text-5xl md:text-7xl font-display uppercase font-bold tracking-tighter mb-8 leading-none">
@@ -263,22 +263,6 @@ const MarketIntelligenceSection = () => {
                    <div className="text-xl font-display font-medium text-white">{token.price}</div>
                  </div>
                ))}
-             </div>
-          </div>
-          
-          <div className="w-full lg:w-1/2 tech-border glass-card bg-emerald-400/[0.05] backdrop-blur-md p-8 relative overflow-hidden">
-             <div className="absolute inset-0 tech-grid opacity-10" />
-             <div className="text-[10px] font-mono text-emerald-400/50 mb-8 uppercase tracking-widest">LIVE_TRANSFERS_LOG</div>
-             <div className="space-y-6">
-                {[...Array(6)].map((_, i) => (
-                  <div key={i} className="flex justify-between items-center gap-8 border-b border-white/5 pb-4">
-                    <div className="flex items-center gap-3">
-                       <div className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-                       <span className="text-[10px] font-mono text-gray-500 uppercase tracking-tighter">NODE_TRANS_{100 + i}</span>
-                    </div>
-                    <div className="text-xs font-mono text-white">0.08ms</div>
-                  </div>
-                ))}
              </div>
           </div>
         </div>
