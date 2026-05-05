@@ -10,6 +10,7 @@ import { TeamPage } from './pages/TeamPage';
 import { BlogPage } from './pages/BlogPage';
 import { ContactPage } from './pages/ContactPage';
 import { CareersPage } from './pages/CareersPage';
+import AboutPage from './pages/AboutPage';
 
 import { NeuralNetwork3D } from './components/NeuralNetwork3D';
 import { CryptoGlobeCanvas } from './components/CryptoGlobe3D';
@@ -497,16 +498,6 @@ const Home = () => {
   );
 };
 
-const About = () => (
-  <div className="max-w-4xl mx-auto px-6 py-24">
-    <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
-      <div className="text-[10px] font-mono text-cyan-400 mb-4 uppercase tracking-[0.3em]">ORIGIN STORY</div>
-      <h1 className="text-6xl font-display mb-12 uppercase tracking-tight font-bold">The <br/><span className="text-white/20">Architectural</span> Shift</h1>
-      <div className="grid md:grid-cols-2 gap-12 text-gray-400 leading-relaxed font-sans text-lg lg:text-xl"><p>NeuroNova Lab was founded in 2024 to bridge the gap between abstract neural theory and industrial application.</p><p>Intelligence is the ultimate resource, and we are here to master it.</p></div>
-    </motion.div>
-  </div>
-);
-
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
@@ -554,7 +545,7 @@ const MainContent = () => {
           } />
           <Route path="/about" element={
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.4 }}>
-              <About />
+              <AboutPage />
             </motion.div>
           } />
           <Route path="/projects" element={
