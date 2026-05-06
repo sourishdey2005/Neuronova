@@ -17,6 +17,16 @@ import { ContactPage } from './pages/ContactPage';
 import { CareersPage } from './pages/CareersPage';
 import AboutPage from './pages/AboutPage';
 
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+};
+
 const DataScienceIntelligenceSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
@@ -452,6 +462,7 @@ const MainContent = () => {
 export default function App() {
   return (
     <Router>
+      <ScrollToTop />
       <div className="min-h-screen bg-[#050505] text-white">
         <Navbar />
         <MainContent />

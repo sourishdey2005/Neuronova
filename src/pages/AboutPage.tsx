@@ -175,6 +175,113 @@ const AboutPage = () => {
         </div>
       </section>
 
+      {/* Laboratory Roadmap - Milestones */}
+      <section className="py-48 px-6 bg-black relative overflow-hidden">
+        <div className="absolute inset-0 tech-grid opacity-5 pointer-events-none" />
+        <div className="max-w-7xl mx-auto">
+          <div className="mb-32">
+            <div className="text-[10px] font-mono text-cyan-400 mb-6 uppercase tracking-[0.4em]">CHRONOLOGY</div>
+            <h2 className="text-5xl md:text-8xl font-display font-bold uppercase tracking-tighter leading-none mb-12">
+              MILESTONE <br /><span className="text-white/20">TRAJECTORY</span>
+            </h2>
+          </div>
+
+          <div className="relative">
+            {/* Vertical Line */}
+            <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-[1px] bg-white/10 -translate-x-1/2 h-full z-0" />
+
+            <div className="space-y-48">
+              {[
+                { 
+                  year: "2021", 
+                  title: "LABORATORY_FOUNDATION", 
+                  desc: "NeuroNova established as a research collective in Bangalore. Focus on high-dimensional neural dynamics and synaptic data synthesis foundations.",
+                },
+                { 
+                  year: "2022", 
+                  title: "NEURAL_CORE_V1.0", 
+                  desc: "First proprietary agent architecture verified. autonomous multi-modal reasoning achieved 40% higher efficiency than legacy benchmarks.",
+                },
+                { 
+                  year: "2023", 
+                  title: "PLANETARY_MESH", 
+                  desc: "Deployment of 12,000 decentralized inference nodes. Planetary mesh allows for asynchronous gradient synchronization with global sub-10ms latency.",
+                },
+                { 
+                  year: "2024", 
+                  title: "SILICON_SOVEREIGNTY", 
+                  desc: "Activation of in-house H-class GPU arrays. Total compute independence from legacy cloud hyperscalers achieved via direct silicon ownership.",
+                },
+                { 
+                  year: "2025", 
+                  title: "SYNTHETIC_COGNITION", 
+                  desc: "Introduction of the first fully synthetic cognitive substrate. Systems now capable of recursive self-optimization and autonomous architectural evolution.",
+                }
+              ].map((milestone, idx) => {
+                const isLeft = idx % 2 === 1;
+                return (
+                  <div key={idx} className="relative z-10">
+                    <div className="grid md:grid-cols-2 gap-0 items-center">
+                      {/* Left Side Content */}
+                      <div className={`w-full px-0 md:px-12 order-2 ${isLeft ? 'md:order-1 text-left md:text-right' : 'md:order-2 hidden md:block opacity-0'}`}>
+                        {isLeft && (
+                          <motion.div 
+                            initial={{ opacity: 0, scaleX: 0.5, x: 50 }}
+                            whileInView={{ opacity: 1, scaleX: 1, x: 0 }}
+                            viewport={{ once: true, margin: "-150px" }}
+                            transition={{ duration: 0.8, ease: "circOut" }}
+                            style={{ transformOrigin: "right center" }}
+                          >
+                            <div className="text-4xl md:text-6xl font-display font-bold text-white mb-4 italic tracking-tighter opacity-20">{milestone.year}</div>
+                            <h4 className="text-xl font-display font-bold uppercase mb-4 text-cyan-400 tracking-widest">{milestone.title}</h4>
+                            <p className="text-gray-500 font-sans max-w-sm md:ml-auto leading-relaxed text-sm">
+                              {milestone.desc}
+                            </p>
+                          </motion.div>
+                        )}
+                      </div>
+
+                      {/* Right Side Content */}
+                      <div className={`w-full px-0 md:px-12 mt-8 md:mt-0 order-3 ${!isLeft ? 'md:order-2 text-left' : 'md:order-1 hidden md:block opacity-0'}`}>
+                        {!isLeft && (
+                          <motion.div 
+                            initial={{ opacity: 0, scaleX: 0.5, x: -50 }}
+                            whileInView={{ opacity: 1, scaleX: 1, x: 0 }}
+                            viewport={{ once: true, margin: "-150px" }}
+                            transition={{ duration: 0.8, ease: "circOut" }}
+                            style={{ transformOrigin: "left center" }}
+                          >
+                            <div className="text-4xl md:text-6xl font-display font-bold text-white mb-4 italic tracking-tighter opacity-20">{milestone.year}</div>
+                            <h4 className="text-xl font-display font-bold uppercase mb-4 text-cyan-400 tracking-widest">{milestone.title}</h4>
+                            <p className="text-gray-500 font-sans max-w-sm leading-relaxed text-sm">
+                              {milestone.desc}
+                            </p>
+                          </motion.div>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Timeline Node - Always Centered on Desktop */}
+                    <div className="absolute left-0 md:left-1/2 w-4 h-4 bg-black border border-cyan-400 -translate-x-1/2 top-1/2 -translate-y-1/2 z-20 hidden md:block">
+                      <motion.div 
+                        initial={{ scale: 0, opacity: 0 }}
+                        whileInView={{ scale: 1, opacity: 1 }}
+                        viewport={{ once: true, margin: "-150px" }}
+                        transition={{ duration: 0.5 }}
+                        className="w-full h-full bg-cyan-400/40"
+                      />
+                    </div>
+                    
+                    {/* Mobile support (node) */}
+                    <div className="md:hidden absolute left-0 top-12 w-2 h-2 bg-cyan-400 -translate-x-1/2 z-20" />
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Summary Section - Why NeuroNova */}
       <section className="py-32 px-6 border-t border-white/5 bg-[#080808]">
         <div className="max-w-7xl mx-auto">
