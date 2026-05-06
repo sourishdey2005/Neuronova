@@ -49,14 +49,18 @@ const ApplicationModal = ({ onClose, jobTitle }: { onClose: () => void; jobTitle
   const [formState, setFormState] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   const [formData, setFormData] = useState({
     fullName: '',
+    email: '',
+    phone: '',
+    whatsapp: '',
     city: '',
     education: '',
     score: '',
     portfolio: '',
-    linkedin: ''
+    linkedin: '',
+    motivation: ''
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
@@ -133,30 +137,52 @@ const ApplicationModal = ({ onClose, jobTitle }: { onClose: () => void; jobTitle
                     <input name="fullName" value={formData.fullName} onChange={handleChange} required className="w-full bg-white/[0.03] border border-white/10 rounded p-2 focus:border-cyan-400/50 outline-none transition-all text-sm font-sans" placeholder="Alan Turing" />
                   </div>
                   <div className="space-y-1">
-                    <label className="text-[9px] font-mono text-gray-500 uppercase flex items-center gap-2"><MapPin size={10} /> City</label>
-                    <input name="city" value={formData.city} onChange={handleChange} required className="w-full bg-white/[0.03] border border-white/10 rounded p-2 focus:border-cyan-400/50 outline-none transition-all text-sm font-sans" placeholder="Bangalore" />
+                    <label className="text-[9px] font-mono text-gray-500 uppercase flex items-center gap-2">@ Email</label>
+                    <input name="email" type="email" value={formData.email} onChange={handleChange} required className="w-full bg-white/[0.03] border border-white/10 rounded p-2 focus:border-cyan-400/50 outline-none transition-all text-sm font-sans" placeholder="turing@neuronova.lab" />
                   </div>
                 </div>
 
                 <div className="grid md:grid-cols-2 gap-4">
                   <div className="space-y-1">
+                    <label className="text-[9px] font-mono text-gray-500 uppercase flex items-center gap-2">Phone</label>
+                    <input name="phone" value={formData.phone} onChange={handleChange} required className="w-full bg-white/[0.03] border border-white/10 rounded p-2 focus:border-cyan-400/50 outline-none transition-all text-sm font-sans" placeholder="+91 ..." />
+                  </div>
+                  <div className="space-y-1">
+                    <label className="text-[9px] font-mono text-gray-500 uppercase flex items-center gap-2">WhatsApp</label>
+                    <input name="whatsapp" value={formData.whatsapp} onChange={handleChange} required className="w-full bg-white/[0.03] border border-white/10 rounded p-2 focus:border-cyan-400/50 outline-none transition-all text-sm font-sans" placeholder="+91 ..." />
+                  </div>
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div className="space-y-1">
+                    <label className="text-[9px] font-mono text-gray-500 uppercase flex items-center gap-2"><MapPin size={10} /> City</label>
+                    <input name="city" value={formData.city} onChange={handleChange} required className="w-full bg-white/[0.03] border border-white/10 rounded p-2 focus:border-cyan-400/50 outline-none transition-all text-sm font-sans" placeholder="Bangalore" />
+                  </div>
+                  <div className="space-y-1">
                     <label className="text-[9px] font-mono text-gray-500 uppercase flex items-center gap-2"><GraduationCap size={10} /> Education</label>
                     <input name="education" value={formData.education} onChange={handleChange} required className="w-full bg-white/[0.03] border border-white/10 rounded p-2 focus:border-cyan-400/50 outline-none transition-all text-sm font-sans" placeholder="PhD in Neural Systems" />
                   </div>
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-4">
                   <div className="space-y-1">
                     <label className="text-[9px] font-mono text-gray-500 uppercase flex items-center gap-2"><Zap size={10} /> CGPA / Score</label>
                     <input name="score" value={formData.score} onChange={handleChange} required className="w-full bg-white/[0.03] border border-white/10 rounded p-2 focus:border-cyan-400/50 outline-none transition-all text-sm font-sans" placeholder="9.5 / 10" />
                   </div>
-                </div>
-
-                <div className="space-y-1">
-                  <label className="text-[9px] font-mono text-gray-500 uppercase flex items-center gap-2"><LinkIcon size={10} /> CV / Portfolio Link</label>
-                  <input name="portfolio" value={formData.portfolio} onChange={handleChange} required type="url" className="w-full bg-white/[0.03] border border-white/10 rounded p-2 focus:border-cyan-400/50 outline-none transition-all text-sm font-sans" placeholder="https://..." />
+                  <div className="space-y-1">
+                    <label className="text-[9px] font-mono text-gray-500 uppercase flex items-center gap-2"><LinkIcon size={10} /> CV / Portfolio</label>
+                    <input name="portfolio" value={formData.portfolio} onChange={handleChange} required type="url" className="w-full bg-white/[0.03] border border-white/10 rounded p-2 focus:border-cyan-400/50 outline-none transition-all text-sm font-sans" placeholder="https://..." />
+                  </div>
                 </div>
 
                 <div className="space-y-1">
                   <label className="text-[9px] font-mono text-gray-500 uppercase flex items-center gap-2"><Building size={10} /> LinkedIn Profile</label>
                   <input name="linkedin" value={formData.linkedin} onChange={handleChange} required type="url" className="w-full bg-white/[0.03] border border-white/10 rounded p-2 focus:border-cyan-400/50 outline-none transition-all text-sm font-sans" placeholder="https://linkedin.com/in/..." />
+                </div>
+
+                <div className="space-y-1">
+                  <label className="text-[9px] font-mono text-gray-500 uppercase flex items-center gap-2">Why do you want to join us?</label>
+                  <textarea name="motivation" value={formData.motivation} onChange={handleChange} required className="w-full bg-white/[0.03] border border-white/10 rounded p-2 focus:border-cyan-400/50 outline-none transition-all text-sm font-sans min-h-[80px]" placeholder="Explain your vision..." />
                 </div>
 
                 <button 
