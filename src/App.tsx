@@ -320,6 +320,32 @@ const Home = () => {
         
         <MarketIntelligenceSection />
         <NeuralIntelligenceSection />
+
+        {/* Testimonials Ribbon */}
+        <section className="py-20 bg-[#020202] border-b border-white/5 overflow-hidden">
+          <div className="flex animate-marquee whitespace-nowrap gap-8 py-4">
+            {[...Array(2)].map((_, i) => (
+              <div key={i} className="flex gap-8 items-center">
+                {[
+                  { remark: "Predictive accuracy is unparalleled. Transformed our risk engine.", company: "QUANT_EDGE" },
+                  { remark: "Plugging into a planet-sized brain. Total compute sovereignty.", company: "ETHER_FLOW" },
+                  { remark: "Synthetic cognition handles proofs legacy LLMs cannot touch.", company: "AXIOM_RES" },
+                  { remark: "Data fabric solved our 10PB bottleneck overnight.", company: "TERRA_SCALE" },
+                  { remark: "Cleanest neural architecture. Zero drift, infinite scaling.", company: "HORIZON_AI" }
+                ].map((t, idx) => (
+                  <div key={idx} className="bg-white/[0.02] border border-white/10 px-8 py-6 rounded-sm flex flex-col gap-3 min-w-[400px]">
+                    <p className="text-gray-400 font-sans italic text-base leading-relaxed break-words whitespace-normal">"{t.remark}"</p>
+                    <div className="flex items-center gap-3">
+                      <div className="w-4 h-[1px] bg-cyan-400" />
+                      <span className="text-[10px] font-mono text-cyan-400 uppercase tracking-[0.3em] font-bold">{t.company}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div>
+        </section>
+        
         <DataScienceIntelligenceSection />
 
         <section className="relative pt-0 pb-16 px-6 text-center">
