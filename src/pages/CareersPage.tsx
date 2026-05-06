@@ -41,7 +41,7 @@ const JOBS = [
     location: 'Bangalore / Remote',
     type: 'Internship',
     category: 'Intern',
-    compensation: '₹0 (Unpaid)'
+    compensation: 'Performance based stipend / PPO opportunity'
   }
 ];
 

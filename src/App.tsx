@@ -281,6 +281,81 @@ const MarketIntelligenceSection = () => {
   );
 };
 
+const FAQSection = () => {
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+
+  const faqs = [
+    {
+      question: "What is NeuroNova Lab's primary research focus?",
+      answer: "We specialize in high-dimensional neural dynamics and biological data synthesis. Our goal is to architect next-generation cognitive substrates that bridge the gap between organic intuition and computational precision."
+    },
+    {
+      question: "How can I collaborate with NeuroNova?",
+      answer: "We welcome collaborations from researchers, institutions, and innovative enterprises. Navigate to our CONTACT page to initiate a secure transmission link with our partnership core."
+    },
+    {
+      question: "What is the 'Neural Planetary Network'?",
+      answer: "It is our decentralized infrastructure consisting of over 12,000 nodes worldwide. This mesh topology allows for real-time global neural synchronization with sub-10ms latency, ensuring consistent model state across all coordinates."
+    },
+    {
+      question: "Are there opportunities for student interns?",
+      answer: "Yes. Our internship programs (AIML, Data Science, R&D) are designed for exceptional talent. We offer performance-based stipends and PPO (Pre-Placement Offer) opportunities for those who demonstrate high-level technical proficiency."
+    },
+    {
+      question: "Where is the physical laboratory located?",
+      answer: "Our primary research hub is located in Bangalore, India—the heart of the global silicon core. However, we operate as a decentralized entity with researchers and compute nodes spanning the globe."
+    }
+  ];
+
+  return (
+    <section className="py-24 px-6 border-t border-white/5 bg-[#020202]">
+      <div className="max-w-3xl mx-auto">
+        <div className="text-center mb-16">
+          <div className="text-[10px] font-mono text-cyan-400 mb-4 uppercase tracking-[0.4em]">KNOWLEDGE_BASE</div>
+          <h2 className="text-4xl md:text-6xl font-display font-bold uppercase tracking-tighter italic">FAQ</h2>
+          <div className="w-12 h-[1px] bg-white/10 mx-auto mt-6" />
+        </div>
+
+        <div className="space-y-4">
+          {faqs.map((faq, idx) => (
+            <motion.div 
+              key={idx}
+              className="tech-border bg-white/[0.02] overflow-hidden"
+            >
+              <button 
+                onClick={() => setActiveIndex(activeIndex === idx ? null : idx)}
+                className="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-white/[0.03] transition-colors"
+              >
+                <span className="font-display font-bold text-sm md:text-base text-gray-200 uppercase tracking-widest">{faq.question}</span>
+                <motion.div
+                  animate={{ rotate: activeIndex === idx ? 45 : 0 }}
+                  className="text-cyan-400"
+                >
+                  <Zap size={16} />
+                </motion.div>
+              </button>
+              <AnimatePresence>
+                {activeIndex === idx && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.3, ease: "circOut" }}
+                  >
+                    <div className="px-6 pb-6 text-gray-500 font-sans text-sm leading-relaxed border-t border-white/5 pt-4">
+                      {faq.answer}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
 const Home = () => {
   const { scrollYProgress } = useScroll();
   const backgroundY = useTransform(scrollYProgress, [0, 1], [0, 300]);
@@ -371,6 +446,9 @@ const Home = () => {
         </section>
         
         <section className="px-6 py-24 bg-white/[0.01] relative overflow-hidden"><div className="absolute inset-0 tech-grid opacity-10" /><motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} className="max-w-5xl mx-auto text-center relative z-10"><h2 className="text-4xl md:text-6xl font-display mb-12 uppercase tracking-tighter italic font-bold">"The stars of the next century will be built from neurons, not fusion."</h2><div className="w-16 h-1 bg-cyan-400 mx-auto mb-8" /><p className="text-gray-500 font-mono text-[10px] uppercase tracking-[0.4em]">NEURONOVA LABORATORY MANIFESTO // V4.2.1</p></motion.div></section>
+
+        {/* FAQ Section */}
+        <FAQSection />
 
         {/* Large Logo Branding Section */}
         <section className="py-16 flex flex-col items-center justify-center border-t border-white/5 bg-black relative overflow-hidden">
