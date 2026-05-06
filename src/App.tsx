@@ -46,7 +46,7 @@ const DataScienceIntelligenceSection = () => {
   }, []);
   
   return (
-    <section ref={sectionRef} className="relative h-[150vh] bg-black/20">
+    <section ref={sectionRef} className="relative h-[102vh] bg-black/20">
       <div className="sticky top-0 h-screen flex items-center justify-center overflow-hidden">
         {/* Background Canvas */}
         <div className="absolute inset-0 z-0">
@@ -118,7 +118,7 @@ const NeuralIntelligenceSection = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative h-[150vh] overflow-hidden bg-[#050505]">
+    <section ref={sectionRef} className="relative h-[102vh] overflow-hidden bg-[#050505]">
       <div className="sticky top-0 h-screen flex items-center justify-center">
         {/* Background Neural Mist / Space */}
         <motion.div 
@@ -247,7 +247,7 @@ const MarketIntelligenceSection = () => {
   ];
 
   return (
-    <section ref={sectionRef} className="relative h-[150vh] border-b border-white/5 bg-[#030303]">
+    <section ref={sectionRef} className="relative h-[102vh] border-b border-white/5 bg-[#030303]">
       <div className="sticky top-0 h-screen overflow-hidden flex items-center">
         {/* 3D Crypto Globe Canvas */}
         <div className="absolute inset-0 z-0">
@@ -305,7 +305,7 @@ const Home = () => {
         <HeroScene />
         
         {/* Cognitive Core Visualization */}
-        <section className="py-24 px-6 relative overflow-hidden">
+        <section className="py-12 px-6 relative overflow-hidden">
           <div className="max-w-7xl mx-auto text-center">
             <div className="max-w-3xl mx-auto">
                <div className="text-[10px] font-mono text-cyan-400 mb-6 uppercase tracking-[0.4em]">NEURAL_CORE_V4</div>
@@ -316,13 +316,13 @@ const Home = () => {
           </div>
         </section>
 
-        <section className="py-12 border-y border-white/10 bg-black overflow-hidden pointer-events-none"><div className="flex animate-marquee whitespace-nowrap gap-12">{[...Array(10)].map((_, i) => <span key={i} className="text-[10px] font-mono text-cyan-400 uppercase tracking-[0.5em]">DECRYPTING_FINANCIAL_STREAM // NODE_LINK_READY</span>)}</div></section>
+        <section className="py-6 border-y border-white/10 bg-black overflow-hidden pointer-events-none"><div className="flex animate-marquee whitespace-nowrap gap-12">{[...Array(10)].map((_, i) => <span key={i} className="text-[10px] font-mono text-cyan-400 uppercase tracking-[0.5em]">DECRYPTING_FINANCIAL_STREAM // NODE_LINK_READY</span>)}</div></section>
         
         <MarketIntelligenceSection />
         <NeuralIntelligenceSection />
         <DataScienceIntelligenceSection />
 
-        <section className="relative py-32 px-6 text-center">
+        <section className="relative pt-0 pb-16 px-6 text-center">
           <div className="max-w-3xl mx-auto">
             <div className="text-[10px] font-mono text-cyan-400 mb-6 uppercase tracking-[0.4em]">SYSTEM TOPOLOGY</div>
             <h2 className="text-5xl md:text-7xl font-display uppercase font-bold tracking-tighter mb-8 leading-tight">GLOBAL <br/><span className="text-white/20">INFRASTRUCTURE</span></h2>
@@ -344,10 +344,10 @@ const Home = () => {
           </div>
         </section>
         
-        <section className="px-6 py-48 bg-white/[0.01] relative overflow-hidden"><div className="absolute inset-0 tech-grid opacity-10" /><motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} className="max-w-5xl mx-auto text-center relative z-10"><h2 className="text-4xl md:text-6xl font-display mb-12 uppercase tracking-tighter italic font-bold">"The stars of the next century will be built from neurons, not fusion."</h2><div className="w-16 h-1 bg-cyan-400 mx-auto mb-8" /><p className="text-gray-500 font-mono text-[10px] uppercase tracking-[0.4em]">NEURONOVA LABORATORY MANIFESTO // V4.2.1</p></motion.div></section>
+        <section className="px-6 py-24 bg-white/[0.01] relative overflow-hidden"><div className="absolute inset-0 tech-grid opacity-10" /><motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} className="max-w-5xl mx-auto text-center relative z-10"><h2 className="text-4xl md:text-6xl font-display mb-12 uppercase tracking-tighter italic font-bold">"The stars of the next century will be built from neurons, not fusion."</h2><div className="w-16 h-1 bg-cyan-400 mx-auto mb-8" /><p className="text-gray-500 font-mono text-[10px] uppercase tracking-[0.4em]">NEURONOVA LABORATORY MANIFESTO // V4.2.1</p></motion.div></section>
 
         {/* Large Logo Branding Section */}
-        <section className="py-32 flex flex-col items-center justify-center border-t border-white/5 bg-black relative overflow-hidden">
+        <section className="py-16 flex flex-col items-center justify-center border-t border-white/5 bg-black relative overflow-hidden">
           <div className="absolute inset-0 tech-grid opacity-5 pointer-events-none" />
           <motion.div 
             initial={{ opacity: 0, scale: 0.9 }}
@@ -466,7 +466,7 @@ export default function App() {
       <div className="min-h-screen bg-[#050505] text-white">
         <Navbar />
         <MainContent />
-        <footer className="border-t border-white/10 py-24 px-6 mt-32 bg-[#030303]">
+        <footer className="border-t border-white/10 py-24 px-6 mt-8 bg-[#030303]">
           <div className="max-w-7xl mx-auto grid md:grid-cols-4 gap-16 text-sm">
             <div className="col-span-2">
               <div className="flex items-center gap-4 mb-8">
