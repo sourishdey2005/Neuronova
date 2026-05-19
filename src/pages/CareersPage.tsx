@@ -8,40 +8,35 @@ const JOBS = [
     title: 'Lead Neural Architect',
     location: 'Bangalore / Remote',
     type: 'Full-time',
-    category: 'Engineering',
-    compensation: '₹85L - ₹1.2Cr + Equity'
+    category: 'Engineering'
   },
   {
     id: 'j-2',
     title: 'Senior Quant Researcher',
     location: 'Mumbai / Remote',
     type: 'Full-time',
-    category: 'Research',
-    compensation: '₹75L - ₹1.1Cr + Bonus'
+    category: 'Research'
   },
   {
     id: 'j-3',
     title: 'Data Synthesis Engineer',
     location: 'Hyderabad',
     type: 'Full-time',
-    category: 'Data Science',
-    compensation: '₹55L - ₹85L'
+    category: 'Data Science'
   },
   {
     id: 'j-4',
     title: 'MLOps Infrastructure Lead',
     location: 'Gurgaon / Remote',
     type: 'Full-time',
-    category: 'Infrastructure',
-    compensation: '₹60L - ₹95L'
+    category: 'Infrastructure'
   },
   {
     id: 'j-5',
     title: 'Intern (AIML, Data Science, R&D, Patent)',
     location: 'Bangalore / Remote',
     type: 'Internship',
-    category: 'Intern',
-    compensation: 'Performance based stipend / PPO opportunity'
+    category: 'Intern'
   }
 ];
 
@@ -258,7 +253,6 @@ export const CareersPage = () => {
                 <h3 className="text-2xl font-display font-bold group-hover:text-cyan-400 transition-colors">{job.title}</h3>
                 <div className="flex items-center gap-6 mt-4 text-gray-500 font-mono text-xs">
                   <div className="flex items-center gap-2"><MapPin size={12} /> {job.location}</div>
-                  <div className="flex items-center gap-2 text-emerald-400/60 font-medium">{job.compensation}</div>
                 </div>
               </div>
 
@@ -296,7 +290,7 @@ export const CareersPage = () => {
               <div>
                  <div className="text-emerald-400 mb-4"><Zap size={32} /></div>
                  <h4 className="text-xl font-display font-bold mb-4 uppercase">VENTURE_UPSIDE</h4>
-                 <p className="text-gray-500 text-sm leading-relaxed">Competitive base salaries paired with aggressive equity targets in our research patents.</p>
+                 <p className="text-gray-500 text-sm leading-relaxed">Aggressive equity targets in our research patents and cognitive infrastructure.</p>
               </div>
            </div>
         </section>
