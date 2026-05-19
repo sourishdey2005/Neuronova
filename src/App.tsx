@@ -11,7 +11,6 @@ import { DataFabricEngine3D } from './components/DataFabricEngine3D';
 // Page Imports
 import { ProjectsPage } from './pages/ProjectsPage';
 import { ResearchPage } from './pages/ResearchPage';
-import { TeamPage } from './pages/TeamPage';
 import { BlogPage } from './pages/BlogPage';
 import { ContactPage } from './pages/ContactPage';
 import { CareersPage } from './pages/CareersPage';
@@ -484,7 +483,6 @@ const Navbar = () => {
     { name: 'About', path: '/about', icon: <Users size={18} /> }, 
     { name: 'Research', path: '/research', icon: <BookOpen size={18} /> }, 
     { name: 'Projects', path: '/projects', icon: <FolderCode size={18} /> }, 
-    { name: 'Team', path: '/team', icon: <Users size={18} /> }, 
     { name: 'Blog', path: '/blog', icon: <Zap size={18} /> },
     { name: 'Careers', path: '/careers', icon: <Briefcase size={18} /> }
   ];
@@ -535,11 +533,6 @@ const MainContent = () => {
           <Route path="/research" element={
             <motion.div initial={{ opacity: 0, scale: 0.98 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 1.02 }} transition={{ duration: 0.4 }}>
               <ResearchPage />
-            </motion.div>
-          } />
-          <Route path="/team" element={
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.4 }}>
-              <TeamPage />
             </motion.div>
           } />
           <Route path="/blog" element={
